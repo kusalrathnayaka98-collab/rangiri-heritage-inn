@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin – Rangiri Heritage Inn</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F2EF;--w:#FFFFFF;--bd:#E5E0D8;
+  --sb:#152B20;--sbm:#1D3B2A;--sba:rgba(255,255,255,.1);
+  --tx:#1A1A1A;--mu:#6E7668;--f:#152B20;
+  --g:#C8903A;--gl:#E0B060;--gp:#FBF3E5;
+  --gr:#27ae60;--re:#c0392b;--bl:#1e4a8b;
+  --r:6px;--sh:0 2px 16px rgba(22,43,34,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);font-size:14px;min-height:100vh;}
+button,a{cursor:pointer;font-family:'Outfit',sans-serif;}
+
+/* LOGIN */
+#ls{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--f) 0%,#0c1c11 100%);}
+.lc{background:var(--w);border-radius:12px;padding:2.8rem 2.5rem;width:100%;max-width:400px;box-shadow:0 32px 80px rgba(0,0,0,.3);}
+.lb{display:flex;align-items:center;gap:.8rem;margin-bottom:2rem;}
+.lb-ic{width:42px;height:42px;background:var(--f);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.lb h1{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--f);line-height:1.1;}
+.lb p{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);}
+.lt{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;color:var(--tx);margin-bottom:.3rem;}
+.ls-sub{font-size:.88rem;color:var(--mu);margin-bottom:2rem;font-weight:300;}
+.lf{margin-bottom:1rem;}
+.lf label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--f);margin-bottom:.45rem;}
+.lf input{width:100%;border:1.5px solid var(--bd);border-radius:var(--r);font-family:'Outfit',sans-serif;font-size:.93rem;color:var(--tx);background:var(--bg);padding:.75rem .95rem;outline:none;transition:border-color .2s,background .2s;}
+.lf input:focus{border-color:var(--f);background:var(--w);}
+.lb2{width:100%;background:var(--f);color:var(--w);border:none;border-radius:var(--r);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.9rem;cursor:pointer;margin-top:.5rem;transition:background .2s;}
+.lb2:hover{background:var(--sbm);}
+.lerr{color:var(--re);font-size:.83rem;margin-top:.7rem;display:none;}
+
+/* SHELL */
+#shell{display:none;min-height:100vh;flex-direction:column;}
+#shell.show{display:flex;}
+
+/* TOPBAR */
+.tb{height:58px;background:var(--w);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;position:sticky;top:0;z-index:100;box-shadow:0 1px 6px rgba(22,43,34,.05);}
+.tb-l{display:flex;align-items:center;gap:.8rem;}
+.tb-brand{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--f);}
+.tb-pg{background:var(--bg);border:1px solid var(--bd);border-radius:100px;padding:.28rem .9rem;font-size:.7rem;font-weight:600;color:var(--mu);letter-spacing:.06em;}
+.tb-r{display:flex;align-items:center;gap:.7rem;}
+.tb-r a{font-size:.76rem;font-weight:500;color:var(--mu);text-decoration:none;padding:.38rem .8rem;border-radius:var(--r);border:1px solid var(--bd);transition:all .2s;}
+.tb-r a:hover{color:var(--f);border-color:var(--f);}
+.btn-lo{background:none;border:1px solid var(--bd);border-radius:var(--r);color:var(--mu);font-size:.73rem;font-weight:500;padding:.38rem .9rem;transition:all .2s;}
+.btn-lo:hover{border-color:var(--re);color:var(--re);}
+
+/* BODY */
+.ab{display:flex;flex:1;min-height:calc(100vh - 58px);}
+
+/* SIDEBAR */
+.side{width:218px;background:var(--sb);flex-shrink:0;padding:1.2rem 0;position:sticky;top:58px;height:calc(100vh - 58px);overflow-y:auto;}
+.ss{padding:.8rem 1.2rem .3rem;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28);font-weight:700;}
+.si{display:flex;align-items:center;gap:.65rem;padding:.6rem 1rem;margin:.1rem .6rem;border-radius:var(--r);font-size:.78rem;font-weight:500;color:rgba(255,255,255,.52);cursor:pointer;transition:all .2s;}
+.si:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.85);}
+.si.on{background:rgba(255,255,255,.11);color:var(--w);}
+.si .ico{font-size:.95rem;width:18px;text-align:center;}
+
+/* MAIN */
+.mc{flex:1;padding:2rem;overflow-y:auto;}
+
+/* PANEL */
+.pn{display:none;animation:pfIn .22s ease;}
+.pn.on{display:block;}
+@keyframes pfIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
+
+/* PAGE HEADER */
+.ph{margin-bottom:2rem;}
+.ph h2{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:600;color:var(--f);margin-bottom:.2rem;}
+.ph p{font-size:.85rem;color:var(--mu);font-weight:300;}
+
+/* CARD */
+.card{background:var(--w);border:1px solid var(--bd);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;}
+.ch{display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem;padding-bottom:.9rem;border-bottom:1px solid var(--bd);}
+.ch h3{font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--f);}
+.ch-ic{width:30px;height:30px;background:var(--bg);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+
+/* FORM */
+.fg{margin-bottom:1rem;}
+.fg label{display:block;font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--f);margin-bottom:.42rem;}
+.fg input,.fg select,.fg textarea{
+  width:100%;border:1.5px solid var(--bd);border-radius:var(--r);
+  font-family:'Outfit',sans-serif;font-size:.9rem;color:var(--tx);
+  background:var(--bg);padding:.67rem .88rem;outline:none;transition:border-color .2s,background .2s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--f);background:var(--w);}
+.fg textarea{height:85px;resize:vertical;}
+.fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%236E7668' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;background-size:14px;}
+.fg select option{background:var(--w);}
+.fn{font-size:.76rem;color:var(--mu);margin-top:.28rem;font-weight:300;}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+
+/* IMG PREVIEW */
+.img-preview{width:100%;height:150px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bd);overflow:hidden;margin-top:.5rem;position:relative;}
+.img-preview img{width:100%;height:100%;object-fit:cover;}
+.img-preview-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--bd);}
+
+/* SAVE */
+.btn-sv{background:var(--f);color:var(--w);border:none;border-radius:var(--r);font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.78rem 2rem;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.45rem;}
+.btn-sv:hover{background:var(--sbm);transform:translateY(-1px);}
+.btn-alt{background:var(--bg);color:var(--f);border:1.5px solid var(--bd);}
+.btn-alt:hover{background:var(--bd);transform:none;}
+.btn-re{background:rgba(192,57,43,.07);color:var(--re);border:1.5px solid rgba(192,57,43,.18);}
+.btn-re:hover{background:rgba(192,57,43,.14);}
+.btn-gr{background:rgba(39,174,96,.09);color:var(--gr);border:1.5px solid rgba(39,174,96,.2);}
+.btn-gr:hover{background:rgba(39,174,96,.18);}
+
+/* STATS */
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:1rem;margin-bottom:2rem;}
+.sc{background:var(--w);border:1px solid var(--bd);border-radius:8px;padding:1.3rem;}
+.sc .sv{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;color:var(--f);display:block;margin-bottom:.2rem;}
+.sc .sl{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);}
+
+/* CHART */
+.chart-wrap{position:relative;height:160px;margin-top:.5rem;}
+.chart-wrap svg{width:100%;height:100%;}
+
+/* QA GRID */
+.qag{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;}
+.qa{background:var(--w);border:1px solid var(--bd);border-radius:8px;padding:1.2rem;cursor:pointer;transition:all .25s;}
+.qa:hover{border-color:var(--f);box-shadow:var(--sh);transform:translateY(-2px);}
+.qa-ic{font-size:1.5rem;margin-bottom:.7rem;}
+.qa h4{font-size:.82rem;font-weight:600;color:var(--f);margin-bottom:.25rem;}
+.qa p{font-size:.76rem;color:var(--mu);font-weight:300;line-height:1.5;}
+
+/* ACCORDION (rooms) */
+.acc{border:1px solid var(--bd);border-radius:8px;margin-bottom:.8rem;overflow:hidden;}
+.acc-h{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;cursor:pointer;background:var(--w);transition:background .2s;}
+.acc-h:hover{background:var(--bg);}
+.acc-hl{display:flex;align-items:center;gap:.8rem;}
+.acc-n{background:var(--f);color:var(--w);font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .75rem;border-radius:100px;}
+.acc-nm{font-size:.88rem;font-weight:600;color:var(--tx);}
+.acc-ch{color:var(--mu);font-size:.85rem;transition:transform .2s;}
+.acc-h.open .acc-ch{transform:rotate(180deg);}
+.acc-b{display:none;padding:1.2rem;border-top:1px solid var(--bd);background:var(--bg);}
+.acc-b.open{display:block;}
+
+/* TAGS */
+.tw{display:flex;flex-wrap:wrap;gap:.35rem;margin:.5rem 0;}
+.tc2{background:var(--w);border:1px solid var(--bd);border-radius:100px;font-size:.76rem;font-weight:500;padding:.22rem .6rem;display:flex;align-items:center;gap:.35rem;}
+.tx2{cursor:pointer;color:var(--mu);font-size:.8rem;line-height:1;transition:color .15s;}
+.tx2:hover{color:var(--re);}
+.ta{display:flex;gap:.5rem;margin-top:.5rem;}
+.ta input{flex:1;}
+.btn-ta{background:var(--f);color:var(--w);border:none;border-radius:var(--r);font-size:.76rem;font-weight:700;padding:.58rem .95rem;white-space:nowrap;transition:background .2s;}
+.btn-ta:hover{background:var(--sbm);}
+
+/* IMAGE URLS LIST */
+.img-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:.8rem;}
+.img-item{display:flex;align-items:center;gap:.5rem;}
+.img-item input{flex:1;}
+.img-thumb{width:44px;height:44px;border-radius:4px;object-fit:cover;border:1px solid var(--bd);background:var(--bg);flex-shrink:0;}
+.btn-im{background:none;border:1px solid var(--bd);border-radius:var(--r);color:var(--mu);font-size:.72rem;padding:.38rem .7rem;white-space:nowrap;transition:all .2s;}
+.btn-im:hover{border-color:var(--re);color:var(--re);}
+.btn-ia{background:var(--gp);border:1px solid rgba(200,144,58,.25);border-radius:var(--r);color:var(--g);font-size:.72rem;font-weight:600;padding:.38rem .8rem;cursor:pointer;margin-top:.4rem;transition:all .2s;}
+.btn-ia:hover{background:rgba(200,144,58,.15);}
+
+/* GALLERY GRID MGMT */
+.gal-mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.7rem;margin-bottom:.8rem;}
+.gm-item{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--bd);background:var(--bg);}
+.gm-item img{width:100%;height:100px;object-fit:cover;display:block;}
+.gm-rem{position:absolute;top:.35rem;right:.35rem;width:22px;height:22px;background:rgba(192,57,43,.8);border:none;border-radius:50%;color:var(--w);font-size:.8rem;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s;}
+.gm-item:hover .gm-rem{opacity:1;}
+.gm-add{display:flex;align-items:center;justify-content:center;height:100px;border:1.5px dashed var(--bd);border-radius:var(--r);cursor:pointer;font-size:1.5rem;color:var(--bd);transition:all .2s;}
+.gm-add:hover{border-color:var(--g);color:var(--g);}
+
+/* TESTIMONIALS */
+.ti-card{background:var(--w);border:1px solid var(--bd);border-radius:8px;padding:1.2rem;margin-bottom:.8rem;position:relative;}
+.ti-del{position:absolute;top:.8rem;right:.8rem;background:none;border:none;color:var(--mu);font-size:1rem;cursor:pointer;transition:color .2s;}
+.ti-del:hover{color:var(--re);}
+.ti-stars{color:var(--g);font-size:1rem;margin-bottom:.6rem;}
+.ti-text{font-size:.85rem;color:var(--mu);font-style:italic;line-height:1.6;margin-bottom:.7rem;}
+.ti-auth{font-size:.8rem;font-weight:600;color:var(--f);}
+.ti-loc{font-size:.73rem;color:var(--mu);}
+
+/* THEME PICKER */
+.color-row{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;}
+.color-row label{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--f);width:150px;}
+.color-row input[type=color]{width:44px;height:34px;border:1.5px solid var(--bd);border-radius:var(--r);padding:2px;cursor:pointer;background:var(--bg);}
+.color-row .cv{font-size:.82rem;color:var(--mu);font-weight:500;}
+
+/* SUMMARY ROW */
+.sr{display:flex;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--bd);font-size:.86rem;}
+.sr:last-child{border:none;}
+.sk{color:var(--mu);width:175px;flex-shrink:0;font-size:.78rem;font-weight:500;}
+.sv2{color:var(--tx);font-weight:500;}
+
+/* DZ */
+.dz{border:1px solid rgba(192,57,43,.18);border-radius:8px;padding:1.2rem;}
+.dz-t{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--re);margin-bottom:.5rem;}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.8rem;right:1.8rem;z-index:9999;background:var(--f);color:var(--w);font-size:.8rem;font-weight:500;padding:.85rem 1.4rem;border-radius:8px;box-shadow:0 8px 28px rgba(22,43,34,.25);transform:translateY(80px);opacity:0;transition:all .3s;display:flex;align-items:center;gap:.5rem;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.ok{background:var(--gr);}
+.toast.er{background:var(--re);}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(22,43,34,.15);border-radius:10px;}
+
+/* RATE BIG */
+.rate-big{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--f);display:block;line-height:1;margin-bottom:.3rem;}
+
+@media(max-width:768px){
+  .side{display:none;}
+  .fr2,.fr3{grid-template-columns:1fr;}
+  .mc{padding:1.2rem;}
+  .sg{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="ls">
+  <div class="lc">
+    <div class="lb">
+      <div class="lb-ic">🏛️</div>
+      <div><h1>Rangiri Heritage Inn</h1><p>Admin Portal</p></div>
+    </div>
+    <div class="lt">Welcome back</div>
+    <div class="ls-sub">Sign in to manage your property</div>
+    <div class="lf"><label>Username</label><input type="text" id="lu" placeholder="admin" autocomplete="username"></div>
+    <div class="lf"><label>Password</label><input type="password" id="lp" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <button class="lb2" onclick="doLogin()">Sign In →</button>
+    <div class="lerr" id="lerr">Incorrect username or password</div>
+  </div>
+</div>
+
+<!-- ADMIN SHELL -->
+<div id="shell">
+  <div class="tb">
+    <div class="tb-l">
+      <div class="tb-brand">Rangiri Heritage Inn</div>
+      <div class="tb-pg" id="tbpg">Dashboard</div>
+    </div>
+    <div class="tb-r">
+      <a href="rangiri_heritage_inn.html" target="_blank">View Site ↗</a>
+      <button class="btn-lo" onclick="doLogout()">Log out</button>
+    </div>
+  </div>
+
+  <div class="ab">
+    <!-- SIDEBAR -->
+    <div class="side">
+      <div class="ss">Overview</div>
+      <div class="si on" id="si-dash"  onclick="sp('dash')"><span class="ico">📊</span> Dashboard</div>
+      <div class="ss">Property</div>
+      <div class="si" id="si-gen"   onclick="sp('gen')"><span class="ico">⚙️</span> General Info</div>
+      <div class="si" id="si-rate"  onclick="sp('rate')"><span class="ico">💰</span> Room Rates</div>
+      <div class="si" id="si-rooms" onclick="sp('rooms')"><span class="ico">🛏️</span> Rooms</div>
+      <div class="si" id="si-attr"  onclick="sp('attr')"><span class="ico">🗺️</span> Attractions</div>
+      <div class="si" id="si-gal"   onclick="sp('gal')"><span class="ico">🖼️</span> Gallery</div>
+      <div class="si" id="si-testi" onclick="sp('testi')"><span class="ico">⭐</span> Testimonials</div>
+      <div class="si" id="si-offer" onclick="sp('offer')"><span class="ico">🎁</span> Special Offers</div>
+      <div class="ss">System</div>
+      <div class="si" id="si-theme" onclick="sp('theme')"><span class="ico">🎨</span> Theme</div>
+      <div class="si" id="si-sett"  onclick="sp('sett')"><span class="ico">🔒</span> Settings</div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="mc">
+
+      <!-- DASHBOARD -->
+      <div class="pn on" id="pn-dash">
+        <div class="ph"><h2>Dashboard</h2><p>Live property overview</p></div>
+        <div class="sg" id="dashSg"></div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:1.5rem">
+          <div class="card">
+            <div class="ch"><div class="ch-ic">📊</div><h3>Revenue Potential (Monthly)</h3></div>
+            <div class="chart-wrap" id="revChart"></div>
+          </div>
+          <div class="card">
+            <div class="ch"><div class="ch-ic">📋</div><h3>Current Settings</h3></div>
+            <div id="dashSum"></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:0">
+          <div class="ch"><div class="ch-ic">⚡</div><h3>Quick Actions</h3></div>
+          <div class="qag">
+            <div class="qa" onclick="sp('rate')"><div class="qa-ic">💰</div><h4>Update Rate</h4><p>Change nightly room price</p></div>
+            <div class="qa" onclick="sp('gen')"><div class="qa-ic">📞</div><h4>Contact Info</h4><p>Phone, email, address</p></div>
+            <div class="qa" onclick="sp('rooms')"><div class="qa-ic">🛏️</div><h4>Edit Rooms</h4><p>Names, descriptions, images</p></div>
+            <div class="qa" onclick="sp('testi')"><div class="qa-ic">⭐</div><h4>Testimonials</h4><p>Add / edit guest reviews</p></div>
+            <div class="qa" onclick="sp('gal')"><div class="qa-ic">🖼️</div><h4>Gallery</h4><p>Manage homepage photos</p></div>
+            <div class="qa" onclick="sp('attr')"><div class="qa-ic">🗺️</div><h4>Attractions</h4><p>Update distances & info</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GENERAL -->
+      <div class="pn" id="pn-gen">
+        <div class="ph"><h2>General Information</h2><p>Contact, check-in, hero image and about text</p></div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">📞</div><h3>Contact Details</h3></div>
+          <div class="fr2">
+            <div class="fg"><label>Phone 1 (Primary)</label><input type="tel" id="g_p1" placeholder="+94 77 000 0000"></div>
+            <div class="fg"><label>Phone 2 (Secondary)</label><input type="tel" id="g_p2" placeholder="+94 66 000 0000"></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>Email</label><input type="email" id="g_em" placeholder="info@rangiriheritage.lk"></div>
+            <div class="fg"><label>WhatsApp Number</label><input type="tel" id="g_wa" placeholder="94770000000"><div class="fn">Without + or spaces (e.g. 94771234567). Used for the floating chat button.</div></div>
+          </div>
+          <div class="fg"><label>Address</label><textarea id="g_addr"></textarea></div>
+          <div class="fg"><label>Google Maps Link</label><input type="url" id="g_map" placeholder="https://maps.google.com/..."></div>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">🕐</div><h3>Check-in / Check-out</h3></div>
+          <div class="fr3">
+            <div class="fg"><label>Check-in Time</label><input type="text" id="g_ci" placeholder="2:00 PM"></div>
+            <div class="fg"><label>Check-out Time</label><input type="text" id="g_co" placeholder="11:00 AM"></div>
+            <div class="fg"><label>Policy Note</label><input type="text" id="g_pol" placeholder="Early check-in subject to availability"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">🖼️</div><h3>Hero Background Image</h3></div>
+          <div class="fg">
+            <label>Hero Image URL</label>
+            <input type="url" id="g_hero" placeholder="https://images.unsplash.com/..." oninput="prevHero(this.value)">
+            <div class="fn">Paste any image URL. Recommended: landscape, 1800×900px or larger.</div>
+          </div>
+          <div class="img-preview" id="heroPrev"><div class="img-preview-ph">🏔️</div></div>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">✍️</div><h3>About Section Content</h3></div>
+          <div class="fg"><label>Paragraph 1</label><textarea id="g_ab1"></textarea></div>
+          <div class="fg"><label>Paragraph 2</label><textarea id="g_ab2"></textarea></div>
+        </div>
+        <button class="btn-sv" onclick="saveGen()">💾 Save General Info</button>
+      </div>
+
+      <!-- RATES -->
+      <div class="pn" id="pn-rate">
+        <div class="ph"><h2>Room Rates</h2><p>Set nightly pricing — displayed across all 6 rooms</p></div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">💰</div><h3>Standard Rate</h3></div>
+          <div class="fg">
+            <label>Rate per Room per Night (LKR)</label>
+            <input type="number" id="r_std" placeholder="6000" min="0" step="100" style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--f);" oninput="updateRatePreview()">
+          </div>
+          <div id="ratePreview" style="padding:.8rem 1rem;background:var(--gp);border-radius:var(--r);font-size:.9rem;color:var(--mu);margin-bottom:1rem;font-weight:300;"></div>
+          <div class="fr2">
+            <div class="fg"><label>Display Note</label><input type="text" id="r_note" placeholder="Per Room · Per Night · Including Taxes"></div>
+            <div class="fg"><label>Weekend Rate (LKR) <span style="font-weight:300;text-transform:none;font-size:.7rem;">optional</span></label><input type="number" id="r_wk" placeholder="7500" min="0"></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>Peak Season Rate (LKR) <span style="font-weight:300;text-transform:none;font-size:.7rem;">optional</span></label><input type="number" id="r_pk" placeholder="8500" min="0"></div>
+            <div class="fg"><label>Breakfast</label>
+              <select id="r_bk"><option value="not_included">Not Included</option><option value="included">Included in Rate</option><option value="optional">Optional Add-on</option></select>
+            </div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>Breakfast Price (LKR)</label><input type="number" id="r_bkp" placeholder="500" min="0"></div>
+            <div class="fg"><label>Cancellation Policy</label><input type="text" id="r_can" placeholder="Free cancellation up to 24 hours..."></div>
+          </div>
+        </div>
+        <button class="btn-sv" onclick="saveRate()">💾 Save Rates</button>
+      </div>
+
+      <!-- ROOMS -->
+      <div class="pn" id="pn-rooms">
+        <div class="ph"><h2>Room Management</h2><p>Edit names, descriptions, amenities and room images</p></div>
+        <div id="roomAccs"></div>
+        <button class="btn-sv" onclick="saveRooms()">💾 Save All Rooms</button>
+      </div>
+
+      <!-- ATTRACTIONS -->
+      <div class="pn" id="pn-attr">
+        <div class="ph"><h2>Nearby Attractions</h2><p>Edit distances, travel times and descriptions</p></div>
+        <div id="attrRows"></div>
+        <button class="btn-sv" onclick="saveAttr()">💾 Save Attractions</button>
+      </div>
+
+      <!-- GALLERY -->
+      <div class="pn" id="pn-gal">
+        <div class="ph"><h2>Homepage Gallery</h2><p>Manage the photo grid shown on the home page (max 6 images)</p></div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">🖼️</div><h3>Gallery Images</h3></div>
+          <div class="gal-mg" id="galMg"></div>
+          <div id="galAddWrap">
+            <div class="fg" style="margin-bottom:.5rem"><label>Add Image URL</label><input type="url" id="galAddUrl" placeholder="https://images.unsplash.com/..."></div>
+            <button class="btn-ia" onclick="addGalImg()">+ Add Image</button>
+          </div>
+        </div>
+        <button class="btn-sv" onclick="saveGal()">💾 Save Gallery</button>
+      </div>
+
+      <!-- TESTIMONIALS -->
+      <div class="pn" id="pn-testi">
+        <div class="ph"><h2>Guest Testimonials</h2><p>Manage reviews displayed on the homepage</p></div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">⭐</div><h3>Add New Review</h3></div>
+          <div class="fr3">
+            <div class="fg"><label>Guest Name</label><input type="text" id="tn" placeholder="Sarah Mitchell"></div>
+            <div class="fg"><label>Country</label><input type="text" id="tc" placeholder="Australia"></div>
+            <div class="fg"><label>Star Rating</label>
+              <select id="tr"><option value="5">★★★★★ 5 Stars</option><option value="4">★★★★☆ 4 Stars</option><option value="3">★★★☆☆ 3 Stars</option></select>
+            </div>
+          </div>
+          <div class="fg"><label>Review Text</label><textarea id="tt" placeholder="Share the guest's experience..."></textarea></div>
+          <button class="btn-sv btn-gr" onclick="addTesti()">+ Add Review</button>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">📝</div><h3>Existing Reviews</h3></div>
+          <div id="testiList"></div>
+        </div>
+        <button class="btn-sv" onclick="saveTesti()">💾 Save Testimonials</button>
+      </div>
+
+      <!-- THEME -->
+      <div class="pn" id="pn-theme">
+        <div class="ph"><h2>Theme Customizer</h2><p>Adjust the website's primary colours</p></div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">🎨</div><h3>Colour Settings</h3></div>
+          <div class="color-row"><label>Primary (Forest Green)</label><input type="color" id="th_f" value="#152B20" oninput="thPrev()"><span class="cv" id="th_fv">#152B20</span></div>
+          <div class="color-row"><label>Accent (Gold)</label><input type="color" id="th_g" value="#C8903A" oninput="thPrev()"><span class="cv" id="th_gv">#C8903A</span></div>
+          <div id="th_prev" style="margin-top:1.5rem;padding:1.5rem;border-radius:var(--r);display:flex;align-items:center;gap:1rem;">
+            <div id="th_btn" style="color:#fff;font-size:.8rem;font-weight:700;padding:.7rem 1.5rem;border-radius:4px;letter-spacing:.1em;text-transform:uppercase;">Book Now</div>
+            <div id="th_price" style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;">LKR 6,000</div>
+            <div id="th_tag" style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;">✦ DAMBULLA</div>
+          </div>
+        </div>
+        <button class="btn-sv" onclick="saveTheme()">💾 Save Theme</button>
+      </div>
+
+
+      <!-- SPECIAL OFFERS -->
+      <div class="pn" id="pn-offer">
+        <div class="ph"><h2>Special Offers</h2><p>Manage the promotional banner shown at the top of the website</p></div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">🎁</div><h3>Banner Settings</h3></div>
+          <div class="fg" style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem">
+            <label style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--f);width:auto;margin:0">Banner Status</label>
+            <label style="display:flex;align-items:center;gap:.6rem;cursor:pointer;font-size:.88rem;font-weight:500;color:var(--tx)">
+              <input type="checkbox" id="of_en" style="width:18px;height:18px;accent-color:var(--f)"> Enable Offer Banner
+            </label>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>Badge Text</label><input type="text" id="of_badge" placeholder="SPECIAL OFFER"><div class="fn">Short label shown as pill (e.g. LIMITED TIME, NEW OFFER)</div></div>
+            <div class="fg"><label>Valid Until Date</label><input type="date" id="of_date"></div>
+          </div>
+          <div class="fg"><label>Offer Headline</label><input type="text" id="of_title" placeholder="Book 3+ nights and get complimentary breakfast!"></div>
+          <div class="fg"><label>Banner Style</label>
+            <select id="of_style">
+              <option value="gold">🟡 Gold (Default)</option>
+              <option value="forest">🟢 Forest Green</option>
+              <option value="red">🔴 Red / Urgent</option>
+            </select>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">👁️</div><h3>Preview</h3></div>
+          <div id="offerPreview" style="border-radius:var(--r);padding:.7rem 1.2rem;display:flex;align-items:center;gap:.9rem;background:linear-gradient(90deg,#C8903A,#E0B060);">
+            <span id="pvBadge" style="background:rgba(0,0,0,.2);color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:.2rem .7rem;border-radius:100px;">SPECIAL OFFER</span>
+            <span id="pvTitle" style="color:#fff;font-size:.88rem;font-weight:600;">Book 3+ nights and get complimentary breakfast!</span>
+            <span id="pvDate" style="color:rgba(255,255,255,.72);font-size:.76rem;"></span>
+          </div>
+        </div>
+        <button class="btn-sv" onclick="saveOffer()">💾 Save Special Offer</button>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="pn" id="pn-sett">
+        <div class="ph"><h2>Settings</h2><p>Credentials and data management</p></div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">🔑</div><h3>Change Password</h3></div>
+          <div class="fg"><label>Current Password</label><input type="password" id="pw0" placeholder="Current password"></div>
+          <div class="fr2">
+            <div class="fg"><label>New Password</label><input type="password" id="pw1" placeholder="New password (min 6 chars)"></div>
+            <div class="fg"><label>Confirm Password</label><input type="password" id="pw2" placeholder="Confirm new password"></div>
+          </div>
+          <button class="btn-sv" onclick="changePw()">Update Password</button>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ch-ic">💾</div><h3>Backup & Restore</h3></div>
+          <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+            <button class="btn-sv" onclick="expData()">📥 Export JSON</button>
+            <button class="btn-sv btn-alt" onclick="document.getElementById('impF').click()">📤 Import JSON</button>
+          </div>
+          <input type="file" id="impF" accept=".json" style="display:none" onchange="impData(event)">
+          <p class="fn" style="margin-top:.7rem">Download a full backup of all settings, or restore from a previous backup.</p>
+        </div>
+        <div class="card">
+          <div class="dz">
+            <div class="dz-t">⚠️ Danger Zone</div>
+            <p class="fn" style="margin-bottom:.8rem">Reset all website content back to factory defaults. Cannot be undone.</p>
+            <button class="btn-sv btn-re" onclick="resetDefs()">Reset to Defaults</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /mc -->
+  </div><!-- /ab -->
+</div><!-- /shell -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══ DEFAULTS ═══
+const DEFS={
+  auth:{username:'admin',password:'rangiri2025'},
+  general:{phone1:'+94 77 000 0000',phone2:'+94 66 000 0000',email:'info@rangiriheritage.lk',whatsapp:'94770000000',address:'Rangiri Heritage Inn\nNawapadeniya Road\nDambulla, Sri Lanka',maplink:'https://maps.google.com/?q=Dambulla+Cave+Temple,+Dambulla,+Sri+Lanka',checkin:'2:00 PM',checkout:'11:00 AM',policy:'Early check-in subject to availability',heroImage:'',about1:"Nestled along Nawapadeniya Road in Dambulla, Rangiri Heritage Inn is a lovingly appointed guesthouse offering six individually styled rooms with every modern comfort.",about2:"Wake to birdsong, explore millennia-old temples, and return to a home that feels both timeless and utterly welcoming."},
+  rates:{standard:6000,note:'Per Room · Per Night · Including Taxes',weekend:'',peak:'',breakfast:'not_included',bk_price:'',cancel:'Free cancellation up to 24 hours before check-in.'},
+  rooms:[
+    {num:1,name:'Sigiriya Suite',desc:'Our flagship room with expansive garden views, inspired by the majestic rock fortress.',bedType:'King Bed',amenities:['Hot Water','AC','Garden View','TV','King Bed'],images:['https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80']},
+    {num:2,name:'Lotus Garden Room',desc:'Opens onto a private garden terrace with lotus motif décor and warm terracotta tones.',bedType:'Queen Bed',amenities:['Hot Water','AC','Private Terrace','TV','Queen Bed'],images:['https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80']},
+    {num:3,name:'Temple View Room',desc:'Morning views toward the Dambulla ridge. Traditional Sri Lankan batik art and brass lamps.',bedType:'Queen Bed',amenities:['Hot Water','Fan + AC','Temple View','TV','Queen Bed'],images:['https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80']},
+    {num:4,name:'Heritage Twin Room',desc:'Twin beds with handwoven cotton covers, terracotta floor tiles and earthy wall tones.',bedType:'Twin Beds',amenities:['Hot Water','AC','Wardrobe','TV','Twin Beds'],images:['https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80']},
+    {num:5,name:'Jungle Retreat Room',desc:'Surrounded by tropical foliage. Natural stone finishes and bamboo accents.',bedType:'Double Bed',amenities:['Hot Water','Ceiling Fan','Forest View','TV','Double Bed'],images:['https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=800&q=80']},
+    {num:6,name:'Polonnaruwa Family Room',desc:'Spacious family room with double and single bed. Hand-painted murals of ancient Polonnaruwa.',bedType:'Double + Single',amenities:['Hot Water','AC','Extra Space','TV','Double + Single'],images:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80']}
+  ],
+  attractions:[
+    {icon:'⛩️',name:'Dambulla Cave Temple',dist:'~1.5 km',time:'5 min',cls:'n',desc:'The largest cave temple in Sri Lanka — 153 Buddha statues and ancient frescoes. UNESCO World Heritage Site.'},
+    {icon:'🦜',name:'Ibbankatuwa Megalithic Tombs',dist:'~3 km',time:'10 min',cls:'n',desc:'Ancient burial sites over 2,500 years old — prehistoric island life.'},
+    {icon:'🗿',name:'Sigiriya Rock Fortress',dist:'~18 km',time:'30 min',cls:'m',desc:"The legendary 'Lion Rock' — 5th century palace perched 200m above jungle."},
+    {icon:'🧗',name:'Pidurangala Rock',dist:'~20 km',time:'35 min',cls:'m',desc:'Best sunrise spot in Sri Lanka — 360° panorama with Sigiriya as the centrepiece.'},
+    {icon:'🏚️',name:'Nalanda Gedige',dist:'~25 km',time:'40 min',cls:'m',desc:"Sri Lanka's only 8th century building combining Hindu and Buddhist architecture."},
+    {icon:'🐘',name:'Minneriya National Park',dist:'~35 km',time:'50 min',cls:'m',desc:"Home to 'The Gathering' — world's largest wild elephant congregation."},
+    {icon:'🌿',name:'Kaudulla National Park',dist:'~40 km',time:'55 min',cls:'m',desc:'Quieter elephant safari with magical dusk viewing at the ancient tank.'},
+    {icon:'🕌',name:'Polonnaruwa Ancient City',dist:'~65 km',time:'1h 20min',cls:'f',desc:"Sri Lanka's medieval capital — palaces, colossal Buddhas, stupas."},
+    {icon:'☸️',name:'Anuradhapura Sacred City',dist:'~65 km',time:'1h 20min',cls:'f',desc:"Cradle of Sri Lankan civilisation. Sacred Bo Tree planted 288 BC."}
+  ],
+  testimonials:[
+    {name:'Sarah Mitchell',country:'Australia',rating:5,text:'"Waking up to birdsong and knowing Sigiriya is just 30 minutes away — it\'s the perfect base for the Cultural Triangle. Hosts were incredibly welcoming."'},
+    {name:'Markus Bauer',country:'Germany',rating:5,text:'"The room was immaculate, the location superb. Visited Dambulla Cave Temple on foot and saw elephants at Minneriya the same day."'},
+    {name:'Priya Nair',country:'India',rating:5,text:'"Beautifully maintained guesthouse with a very personal feel. Delicious breakfast and the owner arranged our tuk-tuk to Sigiriya effortlessly."'}
+  ],
+  gallery:['https://images.unsplash.com/photo-1573074617613-fc8ef27e6a9b?w=800&q=80','https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&q=80','https://images.unsplash.com/photo-1609948543911-c8de4e956898?w=500&q=80','https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500&q=80','https://images.unsplash.com/photo-1588686993671-8c0e6b3c5dbc?w=500&q=80','https://images.unsplash.com/photo-1540518614846-7eded433c457?w=500&q=80'],
+  theme:{primary:'#152B20',accent:'#C8903A'}
+};
+
+// ═══ STORAGE ═══
+const KEY='rangiri_settings',AK='rangiri_auth',SK='rangiri_sess';
+function ld(){try{return JSON.parse(localStorage.getItem(KEY))||JSON.parse(JSON.stringify(DEFS));}catch{return JSON.parse(JSON.stringify(DEFS));}}
+function sd(d){localStorage.setItem(KEY,JSON.stringify(d));}
+function ga(){try{return JSON.parse(localStorage.getItem(AK))||DEFS.auth;}catch{return DEFS.auth;}}
+function v(id){const e=document.getElementById(id);return e?e.value.trim():'';}
+
+// ═══ AUTH ═══
+function doLogin(){
+  const u=document.getElementById('lu').value.trim(),p=document.getElementById('lp').value,a=ga();
+  if(u===a.username&&p===a.password){
+    sessionStorage.setItem(SK,u);
+    document.getElementById('ls').style.display='none';
+    document.getElementById('shell').classList.add('show');
+    init();
+  }else{document.getElementById('lerr').style.display='block';document.getElementById('lp').value='';}
+}
+function doLogout(){sessionStorage.removeItem(SK);location.reload();}
+function checkSess(){if(sessionStorage.getItem(SK)){document.getElementById('ls').style.display='none';document.getElementById('shell').classList.add('show');init();}}
+
+// ═══ INIT ═══
+const PGTITLES={dash:'Dashboard',offer:'Special Offers',gen:'General Info',rate:'Room Rates',rooms:'Rooms',attr:'Attractions',gal:'Gallery',testi:'Testimonials',theme:'Theme',sett:'Settings'};
+function init(){
+  const d=ld();
+  fillGen(d.general||DEFS.general);
+  fillRate(d.rates||DEFS.rates);
+  buildRooms(d.rooms||DEFS.rooms);
+  buildAttr(d.attractions||DEFS.attractions);
+  buildGalMg(d.gallery||DEFS.gallery);
+  buildTesti(d.testimonials||DEFS.testimonials);
+  fillOffer(d.offer||{enabled:false,badge:"SPECIAL OFFER",title:"",validUntil:"",style:"gold"});
+  const th=d.theme||DEFS.theme;
+  document.getElementById('th_f').value=th.primary||'#152B20';
+  document.getElementById('th_g').value=th.accent||'#C8903A';
+  thPrev();
+  refreshDash(d);
+}
+function sp(id){
+  document.querySelectorAll('.pn').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.si').forEach(s=>s.classList.remove('on'));
+  document.getElementById('pn-'+id).classList.add('on');
+  document.getElementById('si-'+id).classList.add('on');
+  document.getElementById('tbpg').textContent=PGTITLES[id]||id;
+  if(id==='dash')refreshDash(ld());
+}
+
+// ═══ DASHBOARD ═══
+function refreshDash(d){
+  const r=d.rates||DEFS.rates,g=d.general||DEFS.general;
+  const rate=Number(r.standard||6000);
+  const fmt=n=>'LKR '+n.toLocaleString();
+  document.getElementById('dashSg').innerHTML=`
+    <div class="sc"><span class="sv">${fmt(rate)}</span><span class="sl">Room Rate / Night</span></div>
+    <div class="sc"><span class="sv">${fmt(rate*6)}</span><span class="sl">Max Daily Revenue</span></div>
+    <div class="sc"><span class="sv">${fmt(rate*6*30)}</span><span class="sl">Max Monthly Revenue</span></div>
+    <div class="sc"><span class="sv">6</span><span class="sl">Total Rooms</span></div>
+    <div class="sc"><span class="sv">${(d.testimonials||DEFS.testimonials).length}</span><span class="sl">Reviews</span></div>
+    <div class="sc"><span class="sv">${(d.attractions||DEFS.attractions).length}</span><span class="sl">Attractions</span></div>
+  `;
+  // Revenue bar chart
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const occ=[0.7,0.75,0.8,0.85,0.72,0.68,0.78,0.92,0.88,0.82,0.76,0.7];
+  const rev=occ.map(o=>Math.round(rate*6*30*o));
+  const maxR=Math.max(...rev);
+  const bars=months.map((m,i)=>{
+    const pct=(rev[i]/maxR)*100;
+    const x=i*60+30;
+    const barH=Math.round(pct*1.1);
+    const y=130-barH;
+    const isHigh=occ[i]===Math.max(...occ);
+    return `<g>
+      <rect x="${x-18}" y="${y}" width="36" height="${barH}" rx="3" fill="${isHigh?'#C8903A':'#152B20'}" opacity="${isHigh?'1':'0.65'}"/>
+      <text x="${x}" y="148" text-anchor="middle" font-size="9" fill="#6E7668" font-family="Outfit">${m}</text>
+    </g>`;
+  }).join('');
+  document.getElementById('revChart').innerHTML=`<svg viewBox="0 0 750 160" xmlns="http://www.w3.org/2000/svg">
+    <text x="8" y="14" font-size="9" fill="#6E7668" font-family="Outfit">Est. Monthly Revenue (LKR)</text>
+    ${bars}
+  </svg>`;
+  // Summary
+  document.getElementById('dashSum').innerHTML=`
+    <div class="sr"><span class="sk">Room Rate</span><span class="sv2">${fmt(rate)} — ${r.note||''}</span></div>
+    <div class="sr"><span class="sk">Phone</span><span class="sv2">${g.phone1}</span></div>
+    <div class="sr"><span class="sk">WhatsApp</span><span class="sv2">+${g.whatsapp||'Not set'}</span></div>
+    <div class="sr"><span class="sk">Check-in</span><span class="sv2">${g.checkin}</span></div>
+    <div class="sr"><span class="sk">Check-out</span><span class="sv2">${g.checkout}</span></div>
+    <div class="sr"><span class="sk">Breakfast</span><span class="sv2">${r.breakfast==='included'?'Included':r.breakfast==='optional'?'Optional add-on':'Not included'}</span></div>
+  `;
+}
+
+// ═══ GENERAL ═══
+function fillGen(g){
+  const m={g_p1:'phone1',g_p2:'phone2',g_em:'email',g_wa:'whatsapp',g_addr:'address',g_map:'maplink',g_ci:'checkin',g_co:'checkout',g_pol:'policy',g_hero:'heroImage',g_ab1:'about1',g_ab2:'about2'};
+  Object.entries(m).forEach(([id,k])=>{const e=document.getElementById(id);if(e)e.value=g[k]||'';});
+  if(g.heroImage)prevHero(g.heroImage);
+}
+function prevHero(url){
+  const p=document.getElementById('heroPrev');
+  if(!p)return;
+  if(url){p.innerHTML=`<img src="${url}" alt="Hero preview" onerror="this.parentNode.innerHTML='<div class=img-preview-ph>⚠️ Invalid URL</div>'">`;}
+  else{p.innerHTML='<div class="img-preview-ph">🏔️</div>';}
+}
+function saveGen(){
+  const d=ld();
+  d.general={phone1:v('g_p1'),phone2:v('g_p2'),email:v('g_em'),whatsapp:v('g_wa').replace(/[^0-9]/g,''),address:v('g_addr'),maplink:v('g_map'),checkin:v('g_ci'),checkout:v('g_co'),policy:v('g_pol'),heroImage:v('g_hero'),about1:v('g_ab1'),about2:v('g_ab2')};
+  sd(d);toast('General info saved ✓','ok');
+}
+
+// ═══ RATES ═══
+function fillRate(r){
+  const m={r_std:'standard',r_note:'note',r_wk:'weekend',r_pk:'peak',r_bkp:'bk_price',r_can:'cancel'};
+  Object.entries(m).forEach(([id,k])=>{const e=document.getElementById(id);if(e)e.value=r[k]||'';});
+  document.getElementById('r_bk').value=r.breakfast||'not_included';
+  updateRatePreview();
+}
+function updateRatePreview(){
+  const r=Number(document.getElementById('r_std').value||6000);
+  document.getElementById('ratePreview').innerHTML=`Daily revenue (6 rooms, full occupancy): <strong style="color:var(--f)">LKR ${(r*6).toLocaleString()}</strong> &nbsp;|&nbsp; Monthly: <strong style="color:var(--f)">LKR ${(r*6*30).toLocaleString()}</strong>`;
+}
+function saveRate(){
+  const d=ld();
+  d.rates={standard:v('r_std'),note:v('r_note'),weekend:v('r_wk'),peak:v('r_pk'),breakfast:v('r_bk'),bk_price:v('r_bkp'),cancel:v('r_can')};
+  sd(d);toast('Rates saved ✓','ok');
+}
+
+// ═══ ROOMS ═══
+let rTags=[],rImgs=[];
+function buildRooms(rooms){
+  document.getElementById('roomAccs').innerHTML=rooms.map((r,i)=>`
+    <div class="acc">
+      <div class="acc-h" onclick="togAcc(${i})">
+        <div class="acc-hl"><span class="acc-n">Room 0${r.num}</span><span class="acc-nm" id="an${i}">${r.name}</span></div>
+        <span class="acc-ch" id="ac${i}">▾</span>
+      </div>
+      <div class="acc-b" id="ab${i}">
+        <div class="fr2">
+          <div class="fg"><label>Room Name</label><input type="text" id="rn${i}" value="${r.name}" oninput="document.getElementById('an${i}').textContent=this.value"></div>
+          <div class="fg"><label>Bed Type</label><input type="text" id="rb${i}" value="${r.bedType||''}"></div>
+        </div>
+        <div class="fg"><label>Description</label><textarea id="rd${i}">${r.desc}</textarea></div>
+        <div class="fg">
+          <label>Amenities</label>
+          <div class="tw" id="rtw${i}"></div>
+          <div class="ta"><input type="text" id="rti${i}" placeholder="Add amenity..." onkeydown="if(event.key==='Enter'){addTag(${i});event.preventDefault()}"><button class="btn-ta" onclick="addTag(${i})">+ Add</button></div>
+        </div>
+        <div class="fg">
+          <label>Room Images (URLs)</label>
+          <div class="img-list" id="rimgs${i}"></div>
+          <button class="btn-ia" onclick="addRoomImg(${i})">+ Add Image URL</button>
+        </div>
+      </div>
+    </div>`).join('');
+  rooms.forEach((r,i)=>{rTags[i]=[...(r.amenities||[])];rImgs[i]=[...(r.images||[])];renderTags(i);renderRoomImgs(i);});
+}
+function renderTags(i){
+  document.getElementById(`rtw${i}`).innerHTML=rTags[i].map((t,j)=>`<span class="tc2">${t}<span class="tx2" onclick="rmTag(${i},${j})">×</span></span>`).join('');
+}
+function addTag(i){const e=document.getElementById(`rti${i}`);const val=e.value.trim();if(!val)return;rTags[i].push(val);renderTags(i);e.value='';}
+function rmTag(i,j){rTags[i].splice(j,1);renderTags(i);}
+function renderRoomImgs(i){
+  const c=document.getElementById(`rimgs${i}`);
+  c.innerHTML=rImgs[i].map((url,j)=>`
+    <div class="img-item">
+      <img class="img-thumb" src="${url}" onerror="this.style.background='var(--bg)'">
+      <input type="text" value="${url}" onchange="rImgs[${i}][${j}]=this.value;renderRoomImgs(${i})" style="flex:1;border:1.5px solid var(--bd);border-radius:var(--r);padding:.55rem .8rem;font-size:.85rem;background:var(--bg);outline:none;" onfocus="this.style.borderColor='var(--f)'" onblur="this.style.borderColor='var(--bd)'">
+      <button class="btn-im" onclick="rImgs[${i}].splice(${j},1);renderRoomImgs(${i})">✕</button>
+    </div>`).join('');
+}
+function addRoomImg(i){rImgs[i].push('');renderRoomImgs(i);}
+function togAcc(i){
+  const b=document.getElementById(`ab${i}`);const h=b.previousElementSibling;const ch=document.getElementById(`ac${i}`);
+  b.classList.toggle('open');h.classList.toggle('open');
+  ch.style.transform=b.classList.contains('open')?'rotate(180deg)':'';
+}
+function saveRooms(){
+  const d=ld();
+  d.rooms=(d.rooms||DEFS.rooms).map((_,i)=>({num:i+1,name:v(`rn${i}`),desc:v(`rd${i}`),bedType:v(`rb${i}`),amenities:rTags[i]||[],images:rImgs[i].filter(u=>u.trim())}));
+  sd(d);toast('Rooms saved ✓','ok');
+}
+
+// ═══ ATTRACTIONS ═══
+function buildAttr(attrs){
+  document.getElementById('attrRows').innerHTML=attrs.map((a,i)=>`
+    <div class="card" style="margin-bottom:.8rem;padding:1.2rem">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem"><span style="font-size:1.3rem">${a.icon}</span><strong style="font-size:.88rem;color:var(--f)">${a.name}</strong></div>
+      <div class="fr3">
+        <div class="fg"><label>Name</label><input type="text" id="an${i}" value="${a.name}"></div>
+        <div class="fg"><label>Distance</label><input type="text" id="ad${i}" value="${a.dist}" placeholder="~18 km"></div>
+        <div class="fg"><label>Travel Time</label><input type="text" id="at${i}" value="${a.time}" placeholder="30 min"></div>
+      </div>
+      <div class="fg"><label>Description</label><textarea id="adesc${i}">${a.desc}</textarea></div>
+    </div>`).join('');
+}
+function saveAttr(){
+  const d=ld();
+  d.attractions=(d.attractions||DEFS.attractions).map((a,i)=>({icon:a.icon,name:v(`an${i}`),dist:v(`ad${i}`),time:v(`at${i}`),cls:a.cls,desc:v(`adesc${i}`)}));
+  sd(d);toast('Attractions saved ✓','ok');
+}
+
+// ═══ GALLERY ═══
+let galImgs=[];
+function buildGalMg(imgs){
+  galImgs=[...imgs];
+  const c=document.getElementById('galMg');
+  const max=6;
+  c.innerHTML=galImgs.map((url,i)=>`
+    <div class="gm-item">
+      <img src="${url}" onerror="this.style.background='var(--bg)'">
+      <button class="gm-rem" onclick="galImgs.splice(${i},1);buildGalMg(galImgs)">✕</button>
+    </div>`).join('');
+  if(galImgs.length<max){c.innerHTML+='<div class="gm-add" onclick="document.getElementById(\'galAddUrl\').focus()">＋</div>';}
+}
+function addGalImg(){
+  const url=document.getElementById('galAddUrl').value.trim();
+  if(!url)return;
+  if(galImgs.length>=6){toast('Max 6 images allowed','er');return;}
+  galImgs.push(url);
+  buildGalMg(galImgs);
+  document.getElementById('galAddUrl').value='';
+}
+function saveGal(){
+  const d=ld();d.gallery=galImgs;sd(d);toast('Gallery saved ✓','ok');
+}
+
+// ═══ TESTIMONIALS ═══
+let testiData=[];
+function buildTesti(ts){
+  testiData=[...ts];
+  document.getElementById('testiList').innerHTML=testiData.length?
+    testiData.map((t,i)=>`
+      <div class="ti-card">
+        <button class="ti-del" onclick="delTesti(${i})">🗑</button>
+        <div class="ti-stars">${'★'.repeat(t.rating||5)}</div>
+        <div class="ti-text">${t.text}</div>
+        <div class="ti-auth">${t.name} <span class="ti-loc">· ${t.country}</span></div>
+      </div>`).join('')
+    :'<p style="font-size:.85rem;color:var(--mu)">No reviews yet. Add one above.</p>';
+}
+function addTesti(){
+  const n=v('tn'),c=v('tc'),r=parseInt(v('tr')||5),t=v('tt');
+  if(!n||!t){toast('Name and review text are required','er');return;}
+  testiData.push({name:n,country:c,rating:r,text:t});
+  buildTesti(testiData);
+  ['tn','tc','tt'].forEach(id=>document.getElementById(id).value='');
+  toast('Review added ✓','ok');
+}
+function delTesti(i){if(!confirm('Delete this review?'))return;testiData.splice(i,1);buildTesti(testiData);}
+function saveTesti(){const d=ld();d.testimonials=testiData;sd(d);toast('Testimonials saved ✓','ok');}
+
+// ═══ THEME ═══
+function thPrev(){
+  const pf=document.getElementById('th_f').value;
+  const pg=document.getElementById('th_g').value;
+  document.getElementById('th_fv').textContent=pf;
+  document.getElementById('th_gv').textContent=pg;
+  document.getElementById('th_btn').style.background=pf;
+  document.getElementById('th_price').style.color=pf;
+  document.getElementById('th_tag').style.color=pg;
+  document.getElementById('th_prev').style.background=pf+'10';
+}
+function saveTheme(){
+  const d=ld();
+  d.theme={primary:document.getElementById('th_f').value,accent:document.getElementById('th_g').value};
+  sd(d);toast('Theme saved ✓ — reload website to see changes','ok');
+}
+
+// ═══ PASSWORD ═══
+function changePw(){
+  const cur=document.getElementById('pw0').value,nw=document.getElementById('pw1').value,cf=document.getElementById('pw2').value,a=ga();
+  if(cur!==a.password){toast('Current password incorrect','er');return;}
+  if(!nw||nw.length<6){toast('Min 6 characters required','er');return;}
+  if(nw!==cf){toast("Passwords don't match",'er');return;}
+  localStorage.setItem(AK,JSON.stringify({username:a.username,password:nw}));
+  ['pw0','pw1','pw2'].forEach(id=>document.getElementById(id).value='');
+  toast('Password updated ✓','ok');
+}
+
+// ═══ EXPORT / IMPORT / RESET ═══
+function expData(){
+  const b=new Blob([JSON.stringify(ld(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);
+  a.download='rangiri_settings_'+new Date().toISOString().split('T')[0]+'.json';a.click();toast('Exported ✓','ok');
+}
+function impData(e){
+  const f=e.target.files[0];if(!f)return;
+  new FileReader().onload=ev=>{try{sd(JSON.parse(ev.target.result));init();toast('Imported ✓','ok');}catch{toast('Invalid file','er');}};
+  (new FileReader()).readAsText(f);
+  const fr=new FileReader();fr.onload=ev=>{try{sd(JSON.parse(ev.target.result));init();toast('Imported ✓','ok');}catch{toast('Invalid JSON file','er');}};fr.readAsText(f);
+}
+function resetDefs(){
+  if(!confirm('Reset all settings to defaults? This cannot be undone.'))return;
+  sd(JSON.parse(JSON.stringify(DEFS)));init();toast('Reset to defaults','ok');
+}
+
+// ═══ TOAST ═══
+let toastTm;
+function toast(msg,type=''){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.className='toast show'+(type?' '+type:'');
+  clearTimeout(toastTm);toastTm=setTimeout(()=>el.classList.remove('show'),3200);
+}
+
+
+// OFFERS
+function fillOffer(o){
+  if(!o)return;
+  document.getElementById('of_en').checked=!!o.enabled;
+  document.getElementById('of_badge').value=o.badge||'SPECIAL OFFER';
+  document.getElementById('of_title').value=o.title||'';
+  document.getElementById('of_date').value=o.validUntil||'';
+  document.getElementById('of_style').value=o.style||'gold';
+  updateOfferPreview();
+}
+function updateOfferPreview(){
+  const badge=document.getElementById('of_badge').value||'SPECIAL OFFER';
+  const title=document.getElementById('of_title').value||'';
+  const date=document.getElementById('of_date').value;
+  const style=document.getElementById('of_style').value;
+  document.getElementById('pvBadge').textContent=badge;
+  document.getElementById('pvTitle').textContent=title;
+  document.getElementById('pvDate').textContent=date?'Valid until '+new Date(date).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}):'';
+  const styles={gold:'linear-gradient(90deg,#C8903A,#E0B060)',forest:'linear-gradient(90deg,#152B20,#2E5040)',red:'linear-gradient(90deg,#8B2A1E,#C0392B)'};
+  document.getElementById('offerPreview').style.background=styles[style]||styles.gold;
+}
+function saveOffer(){
+  const d=ld();
+  d.offer={
+    enabled:document.getElementById('of_en').checked,
+    badge:v('of_badge'),title:v('of_title'),
+    validUntil:v('of_date'),style:v('of_style')
+  };
+  sd(d);toast('Special offer saved ✓','ok');
+}
+// wire preview inputs
+['of_badge','of_title','of_date','of_style'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el)el.addEventListener('input',updateOfferPreview);
+});
+
+// BOOT
+checkSess();
+</script>
+</body>
+</html>

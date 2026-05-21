@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rangiri Heritage Inn – Dambulla, Sri Lanka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --f:#152B20;--fm:#1D3B2A;--fl:#2E5040;
+  --g:#C8903A;--gl:#E0B060;--gp:#FBF3E5;
+  --w:#FFFFFF;--off:#FAF8F4;--li:#F1EBE2;
+  --tx:#1A1A1A;--mu:#6E7668;--bd:rgba(22,43,34,.1);
+  --r:6px;--sh:0 8px 40px rgba(22,43,34,.12);
+  --gr:#27ae60;--re:#c0392b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--w);color:var(--tx);overflow-x:hidden;}
+img{display:block;width:100%;object-fit:cover;}
+button,a{cursor:pointer;font-family:'Outfit',sans-serif;}
+
+/* PRELOADER */
+#preloader{position:fixed;inset:0;z-index:9999;background:var(--f);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;transition:opacity .7s,visibility .7s;}
+#preloader.gone{opacity:0;visibility:hidden;pointer-events:none;}
+.pl-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;color:var(--w);letter-spacing:.08em;opacity:0;animation:plFade 1s ease .3s forwards;}
+.pl-sub{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.4);opacity:0;animation:plFade 1s ease .55s forwards;}
+.pl-track{width:200px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;}
+.pl-fill{height:100%;background:linear-gradient(90deg,var(--g),var(--gl));width:0;animation:plBar 1.6s ease .2s forwards;}
+@keyframes plFade{to{opacity:1;}}@keyframes plBar{to{width:100%;}}
+
+/* SCROLL PROGRESS */
+.sp{position:fixed;top:0;left:0;z-index:1001;height:3px;width:0;background:linear-gradient(90deg,var(--g),var(--gl));transition:width .08s;pointer-events:none;}
+
+/* OFFER BANNER */
+#offerBanner{
+  position:sticky;top:0;z-index:1000;
+  background:linear-gradient(90deg,var(--g),var(--gl));
+  padding:.6rem 4%;display:none;align-items:center;justify-content:space-between;gap:1rem;
+  border-bottom:1px solid rgba(255,255,255,.15);
+}
+.ob-inner{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;flex:1;}
+.ob-badge{background:rgba(0,0,0,.2);color:var(--w);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:.22rem .75rem;border-radius:100px;white-space:nowrap;}
+.ob-title{color:var(--w);font-size:.88rem;font-weight:600;}
+.ob-exp{color:rgba(255,255,255,.72);font-size:.76rem;}
+.ob-close{background:none;border:none;color:rgba(255,255,255,.75);font-size:1.1rem;padding:.2rem .5rem;flex-shrink:0;transition:color .2s;}
+.ob-close:hover{color:var(--w);}
+
+/* NAV */
+nav{position:sticky;top:0;width:100%;z-index:999;transition:all .35s;}
+nav.solid{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd);box-shadow:0 2px 20px rgba(22,43,34,.07);}
+nav.transparent{background:linear-gradient(to bottom,rgba(10,20,12,.55),transparent);}
+.ni{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px;padding:0 4%;}
+.nl{cursor:pointer;line-height:1.15;}
+.nl .lm{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;letter-spacing:.03em;transition:color .3s;}
+.nl .ls{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;font-weight:400;margin-top:1px;transition:color .3s;}
+nav.transparent .lm,.nl.transparent .lm{color:var(--w);}nav.transparent .ls{color:rgba(255,255,255,.55);}
+nav.solid .lm{color:var(--f);}nav.solid .ls{color:var(--mu);}
+.nlinks{display:flex;align-items:center;gap:.2rem;}
+.nlinks button{background:none;border:none;font-size:.78rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:.5rem .85rem;border-radius:var(--r);transition:all .25s;}
+nav.transparent .nlinks button{color:rgba(255,255,255,.8);}
+nav.transparent .nlinks button:hover,.nlinks button.active{color:var(--gl)!important;background:rgba(255,255,255,.1)!important;}
+nav.solid .nlinks button{color:var(--mu);}
+nav.solid .nlinks button:hover,.nlinks button.active{color:var(--f);background:var(--li);}
+.nbk{background:var(--g)!important;color:var(--w)!important;padding:.5rem 1.3rem!important;border-radius:var(--r)!important;margin-left:.5rem;}
+nav.transparent .nbk{background:rgba(255,255,255,.15)!important;border:1px solid rgba(255,255,255,.3)!important;}
+nav.transparent .nbk:hover{background:var(--g)!important;border-color:var(--g)!important;}
+nav.solid .nbk:hover{background:var(--fl)!important;}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:6px;}
+.ham span{display:block;width:22px;height:2px;border-radius:2px;transition:all .3s;}
+nav.transparent .ham span{background:var(--w);}nav.solid .ham span{background:var(--f);}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mob-menu{display:none;flex-direction:column;background:var(--w);border-top:1px solid var(--bd);padding:.8rem 4%;}
+.mob-menu.open{display:flex;}
+.mob-menu button{background:none;border:none;font-size:.92rem;color:var(--tx);padding:.8rem 1rem;text-align:left;border-radius:var(--r);transition:background .2s;font-weight:500;}
+.mob-menu button:hover{background:var(--li);}
+
+/* PAGES */
+.page{display:none;}.page.active{display:block;animation:pgIn .4s ease;}
+@keyframes pgIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+/* REVEAL */
+[data-r]{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease;}
+[data-r="l"]{transform:translateX(-28px);}[data-r="r"]{transform:translateX(28px);}[data-r="sc"]{transform:scale(.94);}
+[data-r].on{opacity:1;transform:none;}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:640px;display:flex;flex-direction:column;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1573074617613-fc8ef27e6a9b?w=1800&q=85') center/cover no-repeat;transform:scale(1.05);transition:transform 8s ease;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(12,24,16,.72) 0%,rgba(12,24,16,.45) 55%,rgba(12,24,16,.2) 100%);}
+.hero-c{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 4%;max-width:1280px;margin:0 auto;width:100%;padding-top:68px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.55rem;background:rgba(255,255,255,.1);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.9);font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;font-weight:500;padding:.4rem 1.1rem;border-radius:100px;margin-bottom:1.8rem;animation:slideUp .9s ease .4s both;}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--gl);border-radius:50%;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7.5vw,6rem);font-weight:300;color:var(--w);line-height:1.05;animation:slideUp .9s ease .55s both;max-width:750px;}
+.hero h1 em{font-style:italic;color:var(--gl);display:block;}
+.hero-desc{font-size:clamp(.95rem,1.8vw,1.1rem);color:rgba(255,255,255,.72);max-width:500px;line-height:1.8;margin:1.4rem 0 2rem;font-weight:300;animation:slideUp .9s ease .7s both;}
+.avail-bar{background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-radius:var(--r);max-width:660px;display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr auto;align-items:center;box-shadow:0 24px 60px rgba(0,0,0,.25);animation:slideUp .9s ease .85s both;overflow:hidden;}
+.ab-field{padding:.95rem 1.1rem;}
+.ab-label{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin-bottom:.3rem;}
+.ab-field input,.ab-field select{border:none;background:none;font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:600;color:var(--tx);width:100%;outline:none;}
+.ab-sep{width:1px;height:38px;background:var(--bd);flex-shrink:0;}
+.ab-btn{background:var(--f);color:var(--w);border:none;padding:1.15rem 1.6rem;font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;transition:background .25s;height:100%;}
+.ab-btn:hover{background:var(--fl);}
+.hero-scroll{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.hs-line{width:1px;height:50px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.5));animation:lineDown 2s ease infinite;}
+.hs-txt{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:500;}
+@keyframes lineDown{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+/* STATS BAR */
+.sbar{background:var(--f);display:grid;grid-template-columns:repeat(4,1fr);}
+.si{padding:1.8rem 1.5rem;text-align:center;border-right:1px solid rgba(255,255,255,.07);transition:background .2s;}
+.si:last-child{border:none;}.si:hover{background:var(--fm);}
+.sv{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--gl);display:block;line-height:1;margin-bottom:.35rem;}
+.sl{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:400;}
+
+/* SECTION */
+.sec{padding:5.5rem 4%;max-width:1280px;margin:0 auto;}
+.stag{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--g);font-weight:600;display:block;margin-bottom:.9rem;}
+.sh{font-family:'Cormorant Garamond',serif;font-size:clamp(1.75rem,3.8vw,2.7rem);font-weight:400;color:var(--f);line-height:1.2;margin-bottom:1.2rem;}
+.sh em{font-style:italic;font-weight:300;}
+.sp2{font-size:1rem;color:var(--mu);line-height:1.85;font-weight:300;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.ag-imgs{position:relative;padding-bottom:3rem;}
+.ag-main{height:460px;border-radius:var(--r);}
+.ag-small{position:absolute;bottom:0;right:-2rem;width:55%;height:200px;border-radius:var(--r);border:5px solid var(--w);box-shadow:var(--sh);}
+.ag-badge{position:absolute;top:2rem;left:-1.5rem;background:var(--g);color:var(--w);padding:1.2rem 1.5rem;border-radius:var(--r);text-align:center;box-shadow:0 12px 30px rgba(200,144,58,.3);}
+.ag-badge .bv{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;display:block;}
+.ag-badge .bl{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;opacity:.85;}
+.sp2{margin-bottom:1.2rem;}
+.check-li{list-style:none;margin:1.5rem 0 2rem;}
+.check-li li{display:flex;align-items:center;gap:.75rem;padding:.45rem 0;font-size:.92rem;color:var(--tx);border-bottom:1px solid var(--bd);}
+.check-li li::before{content:'';width:20px;height:20px;border-radius:50%;flex-shrink:0;background:var(--gp) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23C8903A' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/10px no-repeat;}
+.btn-p{background:var(--f);color:var(--w);border:none;border-radius:var(--r);font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 2rem;transition:all .25s;display:inline-flex;align-items:center;gap:.45rem;}
+.btn-p:hover{background:var(--fl);transform:translateY(-2px);box-shadow:0 8px 24px rgba(22,43,34,.2);}
+
+/* HIGHLIGHTS */
+.hls{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:var(--bd);border-top:1.5px solid var(--bd);border-bottom:1.5px solid var(--bd);}
+.hlc{background:var(--w);padding:2.2rem 1.8rem;transition:background .25s;}.hlc:hover{background:var(--off);}
+.hlc-ico{width:46px;height:46px;border-radius:var(--r);background:var(--f);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.1rem;}
+.hlc h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--f);margin-bottom:.5rem;}
+.hlc p{font-size:.88rem;color:var(--mu);line-height:1.65;font-weight:300;}
+
+/* GALLERY */
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:220px 220px;gap:.8rem;padding:0 4%;}
+.gi{border-radius:var(--r);overflow:hidden;cursor:pointer;position:relative;}
+.gi img{height:100%;transition:transform .5s;}.gi:hover img{transform:scale(1.06);}
+.gi.s2{grid-column:span 2;grid-row:span 2;}.gi.r2{grid-row:span 2;}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.tc{background:var(--w);border:1px solid var(--bd);border-radius:10px;padding:1.8rem;transition:box-shadow .3s,transform .3s;}
+.tc:hover{box-shadow:var(--sh);transform:translateY(-4px);}
+.tc-stars{color:var(--g);font-size:.95rem;letter-spacing:.08em;margin-bottom:1rem;}
+.tc-text{font-size:.93rem;color:var(--tx);line-height:1.75;font-weight:300;margin-bottom:1.3rem;font-style:italic;}
+.tc-author{display:flex;align-items:center;gap:.75rem;}
+.tc-av{width:40px;height:40px;border-radius:50%;background:var(--f);display:flex;align-items:center;justify-content:center;color:var(--w);font-weight:700;font-size:.9rem;flex-shrink:0;}
+.tc-name{font-size:.88rem;font-weight:600;color:var(--f);}
+.tc-loc{font-size:.75rem;color:var(--mu);}
+
+/* CTA */
+.cta{background:var(--f);padding:5rem 4%;text-align:center;}
+.cta .stag{color:var(--gl);}
+.cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:300;color:var(--w);margin-bottom:1rem;}
+.cta p{color:rgba(255,255,255,.6);font-size:.98rem;margin-bottom:2.5rem;font-weight:300;max-width:480px;margin-left:auto;margin-right:auto;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-w{background:var(--w);color:var(--f);border:none;border-radius:var(--r);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 2rem;transition:all .25s;display:inline-flex;align-items:center;gap:.45rem;}
+.btn-w:hover{background:var(--gl);color:var(--f);}
+.btn-wg{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--w);}
+.btn-wg:hover{background:rgba(255,255,255,.2);}
+
+/* FOOTER */
+footer{background:#0e1a12;padding:2.5rem 4%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.fl-logo .lm{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--w);}
+.fl-logo .ls{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2px;}
+.fl-links{display:flex;gap:.3rem;}
+.fl-links button{background:none;border:none;font-size:.76rem;color:rgba(255,255,255,.4);padding:.4rem .7rem;transition:color .2s;font-weight:400;}
+.fl-links button:hover{color:rgba(255,255,255,.8);}
+.fl-copy{font-size:.72rem;color:rgba(255,255,255,.22);font-weight:300;}
+
+/* PAGE BANNER */
+.pb{background:var(--f);padding:5.5rem 4% 3.5rem;position:relative;overflow:hidden;}
+.pb::before{content:'';position:absolute;right:-8%;top:-30%;width:500px;height:500px;border-radius:50%;background:rgba(255,255,255,.025);}
+.pb-inner{max-width:1280px;margin:0 auto;position:relative;}
+.pb h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;color:var(--w);line-height:1.15;}
+.pb p{color:rgba(255,255,255,.55);margin-top:.8rem;font-weight:300;}
+
+/* RATE BAND */
+.rb{background:var(--gp);border-bottom:1px solid rgba(200,144,58,.2);padding:1.3rem 4%;display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;}
+.rb-price{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:600;color:var(--f);}
+.rb-note{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);}
+.rb-sep{width:1px;height:28px;background:rgba(200,144,58,.25);}
+
+/* PRICE CALCULATOR */
+.calc-wrap{max-width:900px;margin:0 auto;padding:2rem 4%;}
+.calc-card{background:var(--off);border:1px solid var(--bd);border-radius:10px;padding:2rem;position:relative;overflow:hidden;}
+.calc-card::before{content:'🧮';position:absolute;right:1.5rem;top:1.5rem;font-size:2.5rem;opacity:.06;}
+.calc-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--f);margin-bottom:1.3rem;}
+.calc-inputs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.ci-field label{display:block;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:.4rem;}
+.ci-field input,.ci-field select{width:100%;border:1.5px solid var(--bd);border-radius:var(--r);font-family:'Outfit',sans-serif;font-size:.92rem;color:var(--tx);background:var(--w);padding:.67rem .85rem;outline:none;transition:border-color .2s;}
+.ci-field input:focus,.ci-field select:focus{border-color:var(--f);}
+.ci-field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%236E7668' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .75rem center;background-size:14px;}
+.calc-result{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:1.2rem;margin-bottom:1.3rem;display:none;}
+.cr-row{display:flex;align-items:center;justify-content:space-between;padding:.45rem 0;font-size:.9rem;border-bottom:1px solid var(--bd);}
+.cr-row:last-child{border:none;}
+.cr-row .ck{color:var(--mu);font-weight:400;}
+.cr-row .cv2{font-weight:600;color:var(--tx);}
+.cr-total{background:var(--gp)!important;border:none;border-radius:var(--r);padding:.9rem 1.2rem!important;margin-top:.8rem;}
+.cr-total .ck{font-weight:700;color:var(--f);font-size:1rem;}
+.cr-total .cv2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:var(--f);}
+.calc-btns{display:flex;gap:.8rem;flex-wrap:wrap;}
+.btn-calc{background:var(--f);color:var(--w);border:none;border-radius:var(--r);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.8rem 1.8rem;transition:all .25s;display:flex;align-items:center;gap:.5rem;}
+.btn-calc:hover{background:var(--fl);transform:translateY(-1px);}
+.btn-wa-calc{background:var(--w);color:var(--f);border:1.5px solid var(--f);}
+.btn-wa-calc:hover{background:var(--f);color:var(--w);}
+
+/* ROOM GRID */
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:2rem;padding:1.5rem 4% 2rem;max-width:1280px;margin:0 auto;}
+.rc{border-radius:10px;overflow:hidden;border:1px solid var(--bd);background:var(--w);box-shadow:0 2px 12px rgba(22,43,34,.05);transition:transform .3s,box-shadow .3s;position:relative;}
+.rc:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(22,43,34,.13);}
+.rc-img{position:relative;height:230px;overflow:hidden;}
+.rc-img img{height:100%;transition:transform .5s;}
+.rc:hover .rc-img img{transform:scale(1.06);}
+.rc-badge{position:absolute;top:.9rem;left:.9rem;background:var(--f);color:var(--w);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:.3rem .8rem;border-radius:100px;}
+.rc-sel-badge{display:none;position:absolute;top:.9rem;right:.9rem;background:var(--g);color:var(--w);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding:.3rem .8rem;border-radius:100px;}
+.rc.comparing .rc-sel-badge{display:block;}
+.rc.comparing{border-color:var(--g);box-shadow:0 0 0 2px var(--g);}
+.rc-body{padding:1.4rem 1.5rem;}
+.rc-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--f);margin-bottom:.35rem;}
+.rc-desc{font-size:.85rem;color:var(--mu);line-height:1.6;margin-bottom:.9rem;font-weight:300;}
+.ap-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.1rem;}
+.ap{background:var(--li);color:var(--mu);font-size:.7rem;font-weight:500;letter-spacing:.04em;padding:.22rem .65rem;border-radius:100px;}
+.rc-foot{display:flex;align-items:center;justify-content:space-between;padding-top:.9rem;border-top:1px solid var(--bd);gap:.5rem;}
+.rc-pv{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--f);}
+.rc-pv span{font-family:'Outfit',sans-serif;font-size:.72rem;color:var(--mu);font-weight:300;margin-left:.15rem;}
+.rc-btns{display:flex;gap:.4rem;}
+.btn-bk{background:var(--f);color:var(--w);border:none;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;border-radius:var(--r);transition:background .2s;}
+.btn-bk:hover{background:var(--fl);}
+.btn-cmp{background:var(--off);color:var(--mu);border:1.5px solid var(--bd);font-size:.68rem;font-weight:600;padding:.5rem 1rem;border-radius:var(--r);transition:all .2s;white-space:nowrap;}
+.btn-cmp:hover{border-color:var(--g);color:var(--g);}
+.btn-cmp.active{background:var(--gp);border-color:var(--g);color:var(--g);}
+
+/* COMPARE FLOATING BAR */
+#compareBar{
+  position:fixed;bottom:0;left:0;right:0;z-index:998;
+  background:var(--f);padding:1rem 4%;
+  display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;
+  box-shadow:0 -4px 24px rgba(22,43,34,.2);
+  transform:translateY(100%);transition:transform .35s ease;
+}
+#compareBar.show{transform:translateY(0);}
+.cb-label{color:rgba(255,255,255,.6);font-size:.8rem;font-weight:400;}
+.cb-rooms{display:flex;gap:.5rem;}
+.cb-chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:var(--w);font-size:.72rem;font-weight:500;padding:.3rem .8rem;border-radius:100px;}
+.btn-do-compare{background:var(--g);color:var(--w);border:none;border-radius:var(--r);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1.5rem;transition:background .2s;}
+.btn-do-compare:hover{background:var(--gl);}
+.btn-clr-compare{background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.65);font-size:.72rem;font-weight:500;padding:.65rem 1rem;border-radius:var(--r);transition:all .2s;}
+.btn-clr-compare:hover{border-color:rgba(255,255,255,.6);color:var(--w);}
+
+/* COMPARE MODAL */
+.cmp-modal{position:fixed;inset:0;z-index:3001;background:rgba(8,18,11,.8);backdrop-filter:blur(8px);display:none;align-items:flex-end;}
+.cmp-modal.open{display:flex;}
+.cmp-inner{background:var(--w);width:100%;max-height:88vh;overflow-y:auto;border-radius:12px 12px 0 0;animation:slideUpMod .35s ease;padding:0;}
+@keyframes slideUpMod{from{transform:translateY(60px);opacity:0;}to{transform:none;opacity:1;}}
+.cmp-hd{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;border-bottom:1px solid var(--bd);position:sticky;top:0;background:var(--w);z-index:1;}
+.cmp-hd h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--f);}
+.cmp-close{background:none;border:1.5px solid var(--bd);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--mu);font-size:1rem;transition:all .2s;}
+.cmp-close:hover{border-color:var(--f);color:var(--f);}
+.cmp-table-wrap{overflow-x:auto;padding:1.5rem 2rem;}
+.cmp-table{width:100%;border-collapse:collapse;min-width:500px;}
+.cmp-table th.ct-label{width:150px;text-align:left;padding:.85rem 1rem;background:var(--off);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--f);border:1px solid var(--bd);}
+.cmp-table th.ct-room{padding:0;border:1px solid var(--bd);background:var(--w);text-align:center;vertical-align:top;}
+.ct-room-img{height:140px;overflow:hidden;background:var(--li);}
+.ct-room-img img{height:100%;width:100%;}
+.ct-room-info{padding:.9rem;}
+.ct-rname{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--f);}
+.ct-rnum{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-top:.2rem;}
+.cmp-table td{padding:.75rem 1rem;border:1px solid var(--bd);text-align:center;font-size:.85rem;vertical-align:middle;}
+.cmp-table td.ct-label{text-align:left;font-weight:600;color:var(--f);background:var(--off);font-size:.8rem;}
+.ct-yes{color:var(--gr);font-size:1rem;font-weight:700;}
+.ct-no{color:var(--bd);font-size:1.1rem;}
+.ct-price-row td{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--f);background:var(--gp);}
+.cmp-book-row td{padding:1rem;}
+
+/* ATTRACTIONS PAGE */
+.attr-intro{max-width:680px;margin:0 auto;text-align:center;padding:3rem 4% 0;}
+.attr-intro p{font-size:.95rem;color:var(--mu);line-height:1.8;font-weight:300;}
+.attr-legend{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;padding:1.5rem 4%;max-width:1280px;margin:0 auto;}
+.al-item{display:flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;}
+.al-dot{width:10px;height:10px;border-radius:50%;}.al-dot.n{background:#2E7D4F;}.al-dot.m{background:#1E4A8B;}.al-dot.f{background:#A05C20;}
+.attr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem;padding:1.5rem 4% 4rem;max-width:1280px;margin:0 auto;}
+.ac{background:var(--w);border:1px solid var(--bd);border-radius:10px;padding:1.5rem;display:flex;gap:1.1rem;align-items:flex-start;box-shadow:0 2px 8px rgba(22,43,34,.04);transition:all .3s;}
+.ac:hover{box-shadow:var(--sh);transform:translateY(-3px);border-color:rgba(200,144,58,.3);}
+.ac-ico{width:50px;height:50px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+.ac-ico.n{background:#EBF5EE;}.ac-ico.m{background:#EEF3FB;}.ac-ico.f{background:#FBF5EE;}
+.ac-info h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--f);margin-bottom:.2rem;}
+.ac-info p{font-size:.83rem;color:var(--mu);line-height:1.6;margin-bottom:.7rem;font-weight:300;}
+.ac-tags{display:flex;gap:.45rem;flex-wrap:wrap;}
+.atag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.22rem .65rem;border-radius:100px;}
+.atag.n{background:#EBF5EE;color:#2E7D4F;}.atag.m{background:#EEF3FB;color:#1E4A8B;}.atag.f{background:#FBF5EE;color:#A05C20;}.atag.t{background:var(--li);color:var(--mu);}
+
+/* CONTACT PAGE */
+.cl{display:grid;grid-template-columns:1fr 1.15fr;min-height:calc(100vh - 68px);}
+.ci{background:var(--f);padding:5rem 4rem;}
+.ci .stag{color:var(--gl);}
+.ci h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:300;color:var(--w);line-height:1.2;margin-bottom:2.5rem;}
+.ib{margin-bottom:2rem;}
+.ib-l{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);font-weight:600;margin-bottom:.5rem;}
+.ib-v{font-size:.97rem;color:rgba(255,255,255,.8);line-height:1.75;font-weight:300;}
+.ib-v a{color:var(--gl);text-decoration:none;transition:color .2s;}.ib-v a:hover{color:var(--w);}
+.idiv{width:100%;height:1px;background:rgba(255,255,255,.08);margin:1.8rem 0;}
+/* Map Embed */
+.map-embed-wrap{margin-top:1.5rem;border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,.1);}
+.map-embed-wrap iframe{display:block;width:100%;height:240px;border:none;filter:contrast(1.1) saturate(.9) brightness(.85);}
+.cf{background:var(--w);padding:5rem 4rem;}
+.cf h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;color:var(--f);margin-bottom:.4rem;}
+.cf p{font-size:.88rem;color:var(--mu);margin-bottom:2.5rem;font-weight:300;}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{margin-bottom:1.1rem;}
+.fg label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--f);margin-bottom:.45rem;}
+.fg input,.fg select,.fg textarea{width:100%;border:1.5px solid var(--bd);border-radius:var(--r);font-family:'Outfit',sans-serif;font-size:.92rem;color:var(--tx);background:var(--off);padding:.72rem .9rem;outline:none;transition:border-color .2s,background .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--f);background:var(--w);}
+.fg textarea{height:100px;resize:vertical;}
+.fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%236E7668' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;background-size:14px;}
+.btn-sub{width:100%;background:var(--f);color:var(--w);border:none;border-radius:var(--r);font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.95rem;cursor:pointer;transition:all .25s;margin-top:.4rem;}
+.btn-sub:hover{background:var(--fl);transform:translateY(-1px);}
+.btn-wa-form{width:100%;background:#25D366;color:var(--w);border:none;border-radius:var(--r);font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.95rem;cursor:pointer;transition:all .25s;margin-top:.6rem;display:flex;align-items:center;justify-content:center;gap:.6rem;}
+.btn-wa-form:hover{background:#128C7E;transform:translateY(-1px);}
+.form-ok{text-align:center;padding:3rem 1rem;display:none;}
+.form-ok .ck{width:64px;height:64px;background:var(--gp);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.8rem;}
+.form-ok h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--f);margin-bottom:.5rem;}
+.form-ok p{color:var(--mu);font-size:.92rem;font-weight:300;}
+
+/* ROOM MODAL */
+.modal-ov{position:fixed;inset:0;z-index:3000;background:rgba(8,18,11,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1.5rem;}
+.modal-ov.open{display:flex;}
+.modal-box{background:var(--w);border-radius:12px;max-width:900px;width:100%;max-height:92vh;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;box-shadow:0 40px 100px rgba(0,0,0,.4);animation:mIn .3s ease;}
+@keyframes mIn{from{opacity:0;transform:scale(.94) translateY(10px);}to{opacity:1;transform:none;}}
+.modal-img-wrap{position:relative;overflow:hidden;}
+.modal-img-wrap img{height:100%;min-height:350px;object-fit:cover;}
+.modal-close{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;background:rgba(0,0,0,.55);border:none;border-radius:50%;color:var(--w);font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;z-index:1;}
+.modal-close:hover{background:rgba(0,0,0,.8);}
+.modal-nav{position:absolute;bottom:1rem;left:0;right:0;display:flex;justify-content:center;gap:.5rem;z-index:1;}
+.mn-btn{background:rgba(255,255,255,.35);border:none;border-radius:100px;color:var(--w);font-size:.7rem;font-weight:700;letter-spacing:.1em;padding:.35rem .9rem;cursor:pointer;backdrop-filter:blur(4px);transition:background .2s;}
+.mn-btn:hover,.mn-btn.active{background:rgba(255,255,255,.75);color:var(--f);}
+.modal-content{padding:2.2rem;overflow-y:auto;}
+.mc-num{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--g);margin-bottom:.5rem;}
+.mc-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;color:var(--f);margin-bottom:.8rem;line-height:1.2;}
+.mc-desc{font-size:.9rem;color:var(--mu);line-height:1.75;font-weight:300;margin-bottom:1.3rem;}
+.mc-amsec h4{font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin-bottom:.65rem;}
+.mc-ams{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem;}
+.mc-am{display:flex;align-items:center;gap:.4rem;background:var(--li);padding:.35rem .75rem;border-radius:100px;font-size:.8rem;font-weight:500;color:var(--tx);}
+.mc-am::before{content:'✓';color:var(--g);font-size:.7rem;font-weight:700;}
+.mc-price-row{display:flex;align-items:center;justify-content:space-between;padding-top:1.2rem;border-top:1px solid var(--bd);}
+.mc-pv{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--f);}
+.mc-pv span{font-family:'Outfit',sans-serif;font-size:.75rem;color:var(--mu);font-weight:300;}
+
+/* WHATSAPP FAB */
+.wa-fab{position:fixed;bottom:5rem;right:2rem;z-index:999;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.5rem;box-shadow:0 6px 24px rgba(37,211,102,.45);transition:transform .25s,box-shadow .25s;animation:waPulse 2.5s ease infinite;}
+.wa-fab:hover{transform:scale(1.1);box-shadow:0 10px 32px rgba(37,211,102,.55);animation:none;}
+@keyframes waPulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.45);}50%{box-shadow:0 6px 32px rgba(37,211,102,.7);}}
+
+/* BACK TO TOP */
+#bttBtn{position:fixed;bottom:2rem;right:2rem;z-index:998;width:44px;height:44px;background:var(--f);color:var(--w);border:none;border-radius:50%;font-size:1.1rem;box-shadow:0 4px 16px rgba(22,43,34,.25);opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;}
+#bttBtn.show{opacity:1;transform:translateY(0);pointer-events:all;}
+#bttBtn:hover{background:var(--fl);}
+
+/* COOKIE BAR */
+#cookieBar{position:fixed;bottom:0;left:0;right:0;z-index:9998;background:var(--tx);color:var(--w);padding:1.1rem 4%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;transform:translateY(100%);transition:transform .4s ease;flex-wrap:wrap;}
+#cookieBar.show{transform:translateY(0);}
+.ck-text{display:flex;align-items:flex-start;gap:.8rem;flex:1;}
+.ck-text p{font-size:.83rem;color:rgba(255,255,255,.75);font-weight:300;line-height:1.5;}
+.ck-btns{display:flex;gap:.6rem;flex-shrink:0;}
+.ck-accept{background:var(--g);color:var(--w);border:none;border-radius:var(--r);font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.3rem;cursor:pointer;transition:background .2s;}
+.ck-accept:hover{background:var(--gl);}
+.ck-decline{background:none;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.6);border-radius:var(--r);font-size:.76rem;font-weight:500;padding:.6rem 1rem;cursor:pointer;transition:all .2s;}
+.ck-decline:hover{border-color:rgba(255,255,255,.5);color:var(--w);}
+
+/* TOAST */
+.toast-notif{position:fixed;top:5rem;right:1.5rem;z-index:4000;background:var(--f);color:var(--w);font-size:.8rem;font-weight:500;padding:.8rem 1.3rem;border-radius:var(--r);box-shadow:0 8px 24px rgba(22,43,34,.25);transform:translateY(-20px);opacity:0;transition:all .3s;}
+.toast-notif.show{transform:translateY(0);opacity:1;}
+
+/* ANIMATIONS */
+@keyframes slideUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .about-grid{grid-template-columns:1fr;gap:3.5rem;}
+  .ag-small{display:none;}.ag-badge{left:1rem;}
+  .cl{grid-template-columns:1fr;}
+  .ci,.cf{padding:3.5rem 6%;}
+  .hls{grid-template-columns:1fr 1fr;}
+  .testi-grid{grid-template-columns:1fr 1fr;}
+  .gal-grid{grid-template-columns:repeat(3,1fr);grid-template-rows:200px 200px;}
+  .gi.s2{grid-column:span 1;grid-row:span 1;}
+  .sbar{grid-template-columns:1fr 1fr;}
+  .si:nth-child(2){border-right:none;}
+  .si:nth-child(3){border-top:1px solid rgba(255,255,255,.07);}
+  .calc-inputs{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:680px){
+  .nlinks{display:none;}.ham{display:flex;}
+  .avail-bar{display:none;}
+  .rg{grid-template-columns:1fr;padding:1.5rem 4%;}
+  .attr-grid{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr;}
+  .hls{grid-template-columns:1fr;}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .gi{height:140px;}
+  .fr2{grid-template-columns:1fr;}
+  .modal-box{grid-template-columns:1fr;max-height:95vh;}
+  .modal-img-wrap{height:220px;}
+  footer{flex-direction:column;align-items:flex-start;}
+  .calc-inputs{grid-template-columns:1fr;}
+  .cmp-table-wrap{padding:1rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="preloader">
+  <div class="pl-name">Rangiri Heritage Inn</div>
+  <div class="pl-sub">Dambulla · Sri Lanka</div>
+  <div class="pl-track"><div class="pl-fill"></div></div>
+</div>
+
+<div class="sp" id="sp"></div>
+
+<!-- OFFER BANNER -->
+<div id="offerBanner">
+  <div class="ob-inner">
+    <span class="ob-badge" id="obBadge">SPECIAL OFFER</span>
+    <span class="ob-title" id="obTitle"></span>
+    <span class="ob-exp" id="obExpiry"></span>
+  </div>
+  <button class="ob-close" onclick="dismissOffer()" title="Close">✕</button>
+</div>
+
+<nav id="nav" class="transparent">
+  <div class="ni">
+    <div class="nl" onclick="showPage('home')">
+      <div class="lm">Rangiri Heritage Inn</div>
+      <div class="ls">Dambulla · Sri Lanka</div>
+    </div>
+    <div class="nlinks">
+      <button id="nb-home"        onclick="showPage('home')">Home</button>
+      <button id="nb-rooms"       onclick="showPage('rooms')">Rooms</button>
+      <button id="nb-attractions" onclick="showPage('attractions')">Attractions</button>
+      <button id="nb-contact"     onclick="showPage('contact')" class="nbk">Book Now</button>
+    </div>
+    <button class="ham" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mob-menu" id="mobmenu">
+    <button onclick="showPage('home');toggleMob()">Home</button>
+    <button onclick="showPage('rooms');toggleMob()">Rooms</button>
+    <button onclick="showPage('attractions');toggleMob()">Attractions</button>
+    <button onclick="showPage('contact');toggleMob()" style="color:var(--g);font-weight:600">Book Now</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-ov"></div>
+    <div class="hero-c">
+      <div class="hero-eyebrow">Nawapadeniya Road · Dambulla</div>
+      <h1>Stay close to <em>ancient wonders.</em></h1>
+      <p class="hero-desc">A boutique guesthouse at the heart of Sri Lanka's Cultural Triangle — six elegant rooms, warm hospitality, timeless surroundings.</p>
+      <div class="avail-bar">
+        <div class="ab-field"><div class="ab-label">Check-in</div><input type="date" id="hci"></div>
+        <div class="ab-sep"></div>
+        <div class="ab-field"><div class="ab-label">Check-out</div><input type="date" id="hco"></div>
+        <div class="ab-sep"></div>
+        <div class="ab-field"><div class="ab-label">Rooms</div>
+          <select id="hcr" style="background:none;border:none;font-size:.88rem;font-weight:600;color:var(--tx);outline:none;width:100%">
+            <option>1 Room</option><option>2 Rooms</option><option>3 Rooms</option><option>4+</option>
+          </select>
+        </div>
+        <button class="ab-btn" onclick="checkAvail()">Check →</button>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="hs-line"></div><div class="hs-txt">Scroll</div></div>
+  </section>
+  <div class="sbar">
+    <div class="si" data-r><span class="sv">6</span><span class="sl">Elegant Rooms</span></div>
+    <div class="si" data-r style="transition-delay:.1s"><span class="sv" id="statRate">LKR 6K</span><span class="sl">Per Night</span></div>
+    <div class="si" data-r style="transition-delay:.2s"><span class="sv">9+</span><span class="sl">Attractions Nearby</span></div>
+    <div class="si" data-r style="transition-delay:.3s"><span class="sv">1.5km</span><span class="sl">Cave Temple</span></div>
+  </div>
+  <div class="sec" style="padding-top:6rem">
+    <div class="about-grid">
+      <div class="ag-imgs" data-r="l">
+        <img class="ag-main" src="https://images.unsplash.com/photo-1609948543911-c8de4e956898?w=800&q=80" alt="Inn">
+        <img class="ag-small" src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?w=400&q=80" alt="Garden">
+        <div class="ag-badge"><span class="bv">6</span><span class="bl">Rooms</span></div>
+      </div>
+      <div data-r="r">
+        <span class="stag">About the Inn</span>
+        <h2 class="sh">A calm retreat <em>rooted in</em> Sri Lanka's heritage</h2>
+        <p class="sp2" id="dyn-about1">Nestled along Nawapadeniya Road in Dambulla, Rangiri Heritage Inn is a lovingly appointed guesthouse offering six individually styled rooms with every modern comfort.</p>
+        <p class="sp2" id="dyn-about2">Wake to birdsong, explore millennia-old temples, and return to a home that feels both timeless and utterly welcoming.</p>
+        <ul class="check-li">
+          <li>6 rooms — all with hot water, TV &amp; AC</li>
+          <li>Expert guidance to heritage sites &amp; national parks</li>
+          <li>Vehicle arrangements for Sigiriya &amp; beyond</li>
+          <li>Traditional Sri Lankan breakfast available</li>
+        </ul>
+        <button class="btn-p" onclick="showPage('rooms')">Explore Rooms →</button>
+      </div>
+    </div>
+  </div>
+  <div class="hls" style="margin-top:5rem">
+    <div class="hlc" data-r><div class="hlc-ico">🏛️</div><h3>Heritage Location</h3><p>1.5 km from Dambulla Cave Temple — a UNESCO World Heritage Site.</p></div>
+    <div class="hlc" data-r style="transition-delay:.1s"><div class="hlc-ico">🌿</div><h3>Tropical Gardens</h3><p>Lush surroundings designed for quiet mornings and slow evenings.</p></div>
+    <div class="hlc" data-r style="transition-delay:.2s"><div class="hlc-ico">🗺️</div><h3>Perfect Base Camp</h3><p>Central to Sigiriya, Polonnaruwa, Minneriya and Anuradhapura.</p></div>
+    <div class="hlc" data-r style="transition-delay:.3s"><div class="hlc-ico">🤝</div><h3>Warm Hospitality</h3><p>Personalised service — local knowledge, honest recommendations.</p></div>
+  </div>
+  <div class="sec" style="padding-bottom:1rem"><span class="stag" data-r>Photo Gallery</span><h2 class="sh" data-r>A glimpse of <em>the experience</em></h2></div>
+  <div class="gal-grid" id="galGrid">
+    <div class="gi s2"><img src="https://images.unsplash.com/photo-1573074617613-fc8ef27e6a9b?w=800&q=80" alt=""></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&q=80" alt=""></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1609948543911-c8de4e956898?w=500&q=80" alt=""></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500&q=80" alt=""></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1588686993671-8c0e6b3c5dbc?w=500&q=80" alt=""></div>
+    <div class="gi"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=500&q=80" alt=""></div>
+  </div>
+  <div class="sec" style="padding-bottom:1rem"><span class="stag" data-r>Guest Reviews</span><h2 class="sh" data-r>What our guests <em>are saying</em></h2></div>
+  <div class="sec" style="padding-top:1rem"><div class="testi-grid" id="testiGrid"></div></div>
+  <div class="cta"><span class="stag">Ready to visit?</span><h2>Book your stay in Dambulla today</h2><p>Just 6 rooms — availability fills quickly during peak season.</p>
+    <div class="cta-btns"><button class="btn-w" onclick="showPage('contact')">Make a Reservation →</button><button class="btn-wg btn-w" onclick="showPage('rooms')">View All Rooms</button></div>
+  </div>
+  <footer>
+    <div class="fl-logo"><div class="lm">Rangiri Heritage Inn</div><div class="ls">Nawapadeniya Road · Dambulla</div></div>
+    <div class="fl-links"><button onclick="showPage('home')">Home</button><button onclick="showPage('rooms')">Rooms</button><button onclick="showPage('attractions')">Attractions</button><button onclick="showPage('contact')">Contact</button></div>
+    <div class="fl-copy">© 2025 Rangiri Heritage Inn</div>
+  </footer>
+</div>
+
+<!-- ROOMS -->
+<div id="page-rooms" class="page">
+  <div class="pb"><div class="pb-inner"><span class="stag">Accommodation</span><h1>Our Rooms</h1><p>Six individually styled spaces — click any room to view full details</p></div></div>
+  <div class="rb"><div class="rb-price" id="rateVal">LKR 6,000</div><div class="rb-sep"></div><div class="rb-note" id="rateNote">Per Room · Per Night · Including Taxes</div></div>
+
+  <!-- PRICE CALCULATOR -->
+  <div class="calc-wrap" data-r>
+    <div class="calc-card">
+      <h3>Calculate Your Stay</h3>
+      <div class="calc-inputs">
+        <div class="ci-field"><label>Check-in Date</label><input type="date" id="calc_ci" onchange="calcUpdate()"></div>
+        <div class="ci-field"><label>Check-out Date</label><input type="date" id="calc_co" onchange="calcUpdate()"></div>
+        <div class="ci-field"><label>Number of Rooms</label>
+          <select id="calc_rm" onchange="calcUpdate()">
+            <option value="1">1 Room</option><option value="2">2 Rooms</option>
+            <option value="3">3 Rooms</option><option value="4">4 Rooms</option>
+            <option value="5">5 Rooms</option><option value="6">6 Rooms</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-result" id="calcResult">
+        <div class="cr-row"><span class="ck">Nights</span><span class="cv2" id="calcNights">—</span></div>
+        <div class="cr-row"><span class="ck">Rate per Room / Night</span><span class="cv2" id="calcRateShow">—</span></div>
+        <div class="cr-row"><span class="ck">Rooms</span><span class="cv2" id="calcRoomsShow">—</span></div>
+        <div class="cr-row cr-total"><span class="ck">Total Estimate</span><span class="cv2" id="calcTotal">—</span></div>
+      </div>
+      <div class="calc-btns">
+        <button class="btn-calc" onclick="bookFromCalc()">Book This Stay →</button>
+        <button class="btn-calc btn-wa-calc" onclick="waFromCalc()">💬 Enquire via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="rg" id="roomGrid"></div>
+  <footer>
+    <div class="fl-logo"><div class="lm">Rangiri Heritage Inn</div><div class="ls">Nawapadeniya Road · Dambulla</div></div>
+    <div class="fl-links"><button onclick="showPage('home')">Home</button><button onclick="showPage('rooms')">Rooms</button><button onclick="showPage('attractions')">Attractions</button><button onclick="showPage('contact')">Contact</button></div>
+    <div class="fl-copy">© 2025 Rangiri Heritage Inn</div>
+  </footer>
+</div>
+
+<!-- ATTRACTIONS -->
+<div id="page-attractions" class="page">
+  <div class="pb"><div class="pb-inner"><span class="stag">Discover the Region</span><h1>Nearby Attractions</h1><p>Ancient wonders, wild landscapes and sacred sites — all within easy reach</p></div></div>
+  <div class="attr-intro"><p>All distances from our inn on Nawapadeniya Road, Dambulla. Travel times by tuk-tuk or car under normal conditions.</p></div>
+  <div class="attr-legend">
+    <div class="al-item"><div class="al-dot n"></div>Within 5 km</div>
+    <div class="al-item"><div class="al-dot m"></div>5 – 50 km</div>
+    <div class="al-item"><div class="al-dot f"></div>50+ km</div>
+  </div>
+  <div class="attr-grid" id="attrGrid"></div>
+  <footer>
+    <div class="fl-logo"><div class="lm">Rangiri Heritage Inn</div><div class="ls">Nawapadeniya Road · Dambulla</div></div>
+    <div class="fl-links"><button onclick="showPage('home')">Home</button><button onclick="showPage('rooms')">Rooms</button><button onclick="showPage('attractions')">Attractions</button><button onclick="showPage('contact')">Contact</button></div>
+    <div class="fl-copy">© 2025 Rangiri Heritage Inn</div>
+  </footer>
+</div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page">
+  <div class="cl">
+    <div class="ci">
+      <span class="stag">Get in Touch</span>
+      <h2>We'd love to host you</h2>
+      <div class="ib"><div class="ib-l">Address</div><div class="ib-v">Rangiri Heritage Inn<br>Nawapadeniya Road, Dambulla<br>Sri Lanka</div></div>
+      <div class="idiv"></div>
+      <div class="ib"><div class="ib-l">Phone / WhatsApp</div><div class="ib-v"><a id="cp1" href="tel:+94770000000">+94 77 000 0000</a><br><a id="cp2" href="tel:+94660000000">+94 66 000 0000</a></div></div>
+      <div class="ib"><div class="ib-l">Email</div><div class="ib-v"><a id="cem" href="mailto:info@rangiriheritage.lk">info@rangiriheritage.lk</a></div></div>
+      <div class="idiv"></div>
+      <div class="ib"><div class="ib-l">Check-in / Check-out</div><div class="ib-v" id="cio">Check-in: 2:00 PM &nbsp;|&nbsp; Check-out: 11:00 AM</div></div>
+      <div class="ib"><div class="ib-l">Getting Here</div><div class="ib-v">3 km from Dambulla Town Centre<br>Near Dambulla Cave Temple junction<br><br><a id="cmaplink" href="https://maps.google.com/?q=Dambulla+Sri+Lanka" target="_blank">Open in Google Maps →</a></div></div>
+      <!-- GOOGLE MAPS EMBED -->
+      <div class="map-embed-wrap">
+        <iframe src="https://maps.google.com/maps?q=Dambulla+Cave+Temple,+Sri+Lanka&z=14&output=embed" loading="lazy" title="Rangiri Heritage Inn Location" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="cf">
+      <h2>Booking Enquiry</h2>
+      <p>Fill in the form and we'll confirm within 2 hours — or send instantly via WhatsApp.</p>
+      <div id="bookForm">
+        <div class="fr2">
+          <div class="fg"><label>Full Name</label><input type="text" id="fn" placeholder="Your name"></div>
+          <div class="fg"><label>Phone / WhatsApp</label><input type="tel" id="fph" placeholder="+94 7X XXX XXXX"></div>
+        </div>
+        <div class="fr2">
+          <div class="fg"><label>Check-in Date</label><input type="date" id="fci"></div>
+          <div class="fg"><label>Check-out Date</label><input type="date" id="fco"></div>
+        </div>
+        <div class="fr2">
+          <div class="fg"><label>Rooms</label><select id="frm"><option>1 Room</option><option>2 Rooms</option><option>3 Rooms</option><option>4 Rooms</option><option>5 Rooms</option><option>6 Rooms (Full Inn)</option></select></div>
+          <div class="fg"><label>Guests</label><select id="fg2"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+        </div>
+        <div class="fg"><label>Special Requests</label><textarea id="fsr" placeholder="Early check-in, vehicle to Sigiriya, dietary needs..."></textarea></div>
+        <button class="btn-sub" onclick="submitForm()">Send Enquiry</button>
+        <button class="btn-wa-form" onclick="sendWhatsApp()">💬 Send via WhatsApp (Instant)</button>
+      </div>
+      <div class="form-ok" id="formOk"><div class="ck">✓</div><h3>Enquiry Received!</h3><p>We'll confirm your reservation within 2 hours<br>via phone or WhatsApp.</p></div>
+    </div>
+  </div>
+  <footer>
+    <div class="fl-logo"><div class="lm">Rangiri Heritage Inn</div><div class="ls">Nawapadeniya Road · Dambulla</div></div>
+    <div class="fl-links"><button onclick="showPage('home')">Home</button><button onclick="showPage('rooms')">Rooms</button><button onclick="showPage('attractions')">Attractions</button><button onclick="showPage('contact')">Contact</button></div>
+    <div class="fl-copy">© 2025 Rangiri Heritage Inn</div>
+  </footer>
+</div>
+
+<!-- ROOM MODAL -->
+<div class="modal-ov" id="roomModal" onclick="if(event.target===this){closeRoomModal();}">
+  <div class="modal-box">
+    <div class="modal-img-wrap">
+      <img id="modalImg" src="" alt="">
+      <button class="modal-close" onclick="closeRoomModal()">✕</button>
+      <div class="modal-nav" id="modalNav"></div>
+    </div>
+    <div class="modal-content">
+      <div class="mc-num" id="mcNum"></div>
+      <div class="mc-name" id="mcName"></div>
+      <div class="mc-desc" id="mcDesc"></div>
+      <div class="mc-amsec"><h4>Room Amenities</h4><div class="mc-ams" id="mcAms"></div></div>
+      <div class="mc-price-row">
+        <div class="mc-pv" id="mcPrice">LKR 6,000 <span>/ night</span></div>
+        <button class="btn-p" onclick="showPage('contact');closeRoomModal()">Book This Room →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARE MODAL -->
+<div class="cmp-modal" id="cmpModal" onclick="if(event.target===this){document.getElementById('cmpModal').classList.remove('open');}">
+  <div class="cmp-inner">
+    <div class="cmp-hd">
+      <h3>Room Comparison</h3>
+      <button class="cmp-close" onclick="document.getElementById('cmpModal').classList.remove('open')">✕</button>
+    </div>
+    <div class="cmp-table-wrap">
+      <table class="cmp-table" id="cmpTable"></table>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARE BAR -->
+<div id="compareBar">
+  <span class="cb-label">Comparing:</span>
+  <div class="cb-rooms" id="cbRooms"></div>
+  <button class="btn-do-compare" onclick="openCompare()">Compare Rooms →</button>
+  <button class="btn-clr-compare" onclick="clearCompare()">Clear</button>
+</div>
+
+<a class="wa-fab" id="waFab" href="https://wa.me/94770000000" target="_blank" title="WhatsApp">💬</a>
+<button id="bttBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- COOKIE BAR -->
+<div id="cookieBar">
+  <div class="ck-text">
+    <span style="font-size:1.4rem">🍪</span>
+    <p>We use cookies to enhance your browsing experience. By continuing to use this site you agree to our use of cookies.</p>
+  </div>
+  <div class="ck-btns">
+    <button class="ck-accept" onclick="acceptCookies()">Accept All</button>
+    <button class="ck-decline" onclick="declineCookies()">Decline</button>
+  </div>
+</div>
+
+<div class="toast-notif" id="toastNotif"></div>
+
+<script>
+// ═══ DEFAULTS ═══
+const DEF_ROOMS=[
+  {num:1,name:'Sigiriya Suite',desc:'Our flagship room with expansive garden views, inspired by the majestic rock fortress. Features a carved wooden headboard and antique furnishings.',bedType:'King Bed',amenities:['Hot Water','AC','Garden View','TV','King Bed'],images:['https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80']},
+  {num:2,name:'Lotus Garden Room',desc:'Opens onto a private garden terrace with lotus motif décor and warm terracotta tones. Ideal for couples seeking peaceful seclusion.',bedType:'Queen Bed',amenities:['Hot Water','AC','Private Terrace','TV','Queen Bed'],images:['https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80']},
+  {num:3,name:'Temple View Room',desc:'Catches the golden light of morning with views toward the Dambulla ridge. Decorated with traditional Sri Lankan batik art and brass lamps.',bedType:'Queen Bed',amenities:['Hot Water','Fan + AC','Temple View','TV','Queen Bed'],images:['https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80']},
+  {num:4,name:'Heritage Twin Room',desc:'Perfect for two travellers exploring together. Twin beds with handwoven cotton covers, terracotta floor tiles and earthy wall tones.',bedType:'Twin Beds',amenities:['Hot Water','AC','Wardrobe','TV','Twin Beds'],images:['https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80']},
+  {num:5,name:'Jungle Retreat Room',desc:'Nestled on the quieter side of the inn surrounded by tropical foliage. Natural stone finishes and bamboo accents.',bedType:'Double Bed',amenities:['Hot Water','Ceiling Fan','Forest View','TV','Double Bed'],images:['https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=800&q=80']},
+  {num:6,name:'Polonnaruwa Family Room',desc:'Spacious for families with double and single bed. Hand-painted murals of ancient Polonnaruwa adorn the walls.',bedType:'Double + Single',amenities:['Hot Water','AC','Extra Space','TV','Double + Single'],images:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80']}
+];
+const DEF_ATTRS=[
+  {icon:'⛩️',name:'Dambulla Cave Temple',dist:'~1.5 km',time:'5 min',cls:'n',desc:'The largest cave temple in Sri Lanka — 153 Buddha statues and ancient frescoes. UNESCO World Heritage Site.'},
+  {icon:'🦜',name:'Ibbankatuwa Megalithic Tombs',dist:'~3 km',time:'10 min',cls:'n',desc:'Ancient burial sites over 2,500 years old — a glimpse into prehistoric island life.'},
+  {icon:'🗿',name:'Sigiriya Rock Fortress',dist:'~18 km',time:'30 min',cls:'m',desc:"The legendary 'Lion Rock' — 5th century palace perched 200m above jungle. Ancient frescoes, panoramic views."},
+  {icon:'🧗',name:'Pidurangala Rock',dist:'~20 km',time:'35 min',cls:'m',desc:'Best sunrise spot in Sri Lanka — 360° panorama with Sigiriya as the centrepiece.'},
+  {icon:'🏚️',name:'Nalanda Gedige',dist:'~25 km',time:'40 min',cls:'m',desc:"Sri Lanka's only 8th century building combining Hindu and Buddhist architecture."},
+  {icon:'🐘',name:'Minneriya National Park',dist:'~35 km',time:'50 min',cls:'m',desc:"Home to 'The Gathering' — the world's largest wild elephant congregation."},
+  {icon:'🌿',name:'Kaudulla National Park',dist:'~40 km',time:'55 min',cls:'m',desc:'Quieter elephant safari with magical dusk viewing at the ancient tank.'},
+  {icon:'🕌',name:'Polonnaruwa Ancient City',dist:'~65 km',time:'1h 20min',cls:'f',desc:"Sri Lanka's medieval capital — palaces, colossal Buddhas and stupas."},
+  {icon:'☸️',name:'Anuradhapura Sacred City',dist:'~65 km',time:'1h 20min',cls:'f',desc:"Cradle of Sri Lankan civilisation. Sacred Bo Tree planted 288 BC."}
+];
+const DEF_TESTI=[
+  {name:'Sarah Mitchell',country:'Australia',rating:5,text:'"Waking up to birdsong and knowing Sigiriya is just 30 minutes away — the perfect base for exploring the Cultural Triangle. Hosts were incredibly welcoming."'},
+  {name:'Markus Bauer',country:'Germany',rating:5,text:'"Immaculate room, superb location. Visited Dambulla Cave Temple on foot and saw elephants at Minneriya the same day. Highly recommend."'},
+  {name:'Priya Nair',country:'India',rating:5,text:'"Beautifully maintained guesthouse with a very personal feel. Delicious breakfast and the owner arranged our tuk-tuk to Sigiriya effortlessly."'}
+];
+const DEF_GALLERY=['https://images.unsplash.com/photo-1573074617613-fc8ef27e6a9b?w=800&q=80','https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&q=80','https://images.unsplash.com/photo-1609948543911-c8de4e956898?w=500&q=80','https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500&q=80','https://images.unsplash.com/photo-1588686993671-8c0e6b3c5dbc?w=500&q=80','https://images.unsplash.com/photo-1540518614846-7eded433c457?w=500&q=80'];
+
+function loadSettings(){try{return JSON.parse(localStorage.getItem('rangiri_settings'))||{};}catch{return {};}}
+
+// ═══ APPLY DATA ═══
+function applyData(){
+  const d=loadSettings();
+  const g=d.general||{};const r=d.rates||{};
+  const rate=Number(r.standard||6000);
+  const fmt=n=>'LKR '+n.toLocaleString();
+
+  if(g.heroImage)document.getElementById('heroBg').style.backgroundImage="url('"+g.heroImage+"')";
+  document.getElementById('rateVal').textContent=fmt(rate);
+  document.getElementById('rateNote').textContent=r.note||'Per Room · Per Night · Including Taxes';
+  document.getElementById('statRate').textContent='LKR '+Math.round(rate/1000)+'K';
+  if(g.phone1){const e=document.getElementById('cp1');e.textContent=g.phone1;e.href='tel:'+g.phone1.replace(/\s/g,'');}
+  if(g.phone2){const e=document.getElementById('cp2');e.textContent=g.phone2;e.href='tel:'+g.phone2.replace(/\s/g,'');}
+  if(g.email){const e=document.getElementById('cem');e.textContent=g.email;e.href='mailto:'+g.email;}
+  if(g.checkin||g.checkout)document.getElementById('cio').textContent='Check-in: '+(g.checkin||'2:00 PM')+'  |  Check-out: '+(g.checkout||'11:00 AM');
+  if(g.maplink)document.getElementById('cmaplink').href=g.maplink;
+  if(g.about1)document.getElementById('dyn-about1').textContent=g.about1;
+  if(g.about2)document.getElementById('dyn-about2').textContent=g.about2;
+  if(g.whatsapp){
+    const wa=g.whatsapp.replace(/[^0-9]/g,'');
+    document.getElementById('waFab').href='https://wa.me/'+wa;
+  }
+  buildRooms(d.rooms||DEF_ROOMS,rate);
+  buildAttr(d.attractions||DEF_ATTRS);
+  buildGallery(d.gallery||DEF_GALLERY);
+  buildTestimonials(d.testimonials||DEF_TESTI);
+  loadOfferBanner(d.offer);
+}
+
+// ═══ OFFER BANNER ═══
+function loadOfferBanner(offer){
+  if(!offer||!offer.enabled)return;
+  if(sessionStorage.getItem('offer_dismissed'))return;
+  document.getElementById('obBadge').textContent=offer.badge||'SPECIAL OFFER';
+  document.getElementById('obTitle').textContent=offer.title||'';
+  if(offer.validUntil){
+    const d=new Date(offer.validUntil);
+    if(d>new Date())document.getElementById('obExpiry').textContent='Valid until '+d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+  }
+  if(offer.style==='forest'){document.getElementById('offerBanner').style.background='linear-gradient(90deg,#152B20,#2E5040)';}
+  else if(offer.style==='red'){document.getElementById('offerBanner').style.background='linear-gradient(90deg,#8B2A1E,#C0392B)';}
+  document.getElementById('offerBanner').style.display='flex';
+}
+function dismissOffer(){document.getElementById('offerBanner').style.display='none';sessionStorage.setItem('offer_dismissed','1');}
+
+// ═══ ROOMS ═══
+let allRooms=[];
+function buildRooms(rooms,rate){
+  allRooms=rooms;
+  const fmt=n=>'LKR '+n.toLocaleString();
+  document.getElementById('roomGrid').innerHTML=rooms.map((r,i)=>`
+    <div class="rc" id="rc${i}" data-r style="transition-delay:${(i%3)*.1}s">
+      <div class="rc-img" onclick="openModal(${i})" style="cursor:pointer">
+        <img src="${(r.images&&r.images[0])||''}" alt="${r.name}" onerror="this.style.background='#e8e2d8';this.removeAttribute('src')">
+        <span class="rc-badge">Room 0${r.num}</span>
+        <span class="rc-sel-badge">✓ Selected</span>
+      </div>
+      <div class="rc-body">
+        <div class="rc-name" onclick="openModal(${i})" style="cursor:pointer">${r.name}</div>
+        <div class="rc-desc">${r.desc}</div>
+        <div class="ap-row">${(r.amenities||[]).slice(0,4).map(a=>`<span class="ap">${a}</span>`).join('')}${(r.amenities||[]).length>4?`<span class="ap">+${r.amenities.length-4}</span>`:''}</div>
+        <div class="rc-foot">
+          <div class="rc-pv">${fmt(rate)} <span>/ night</span></div>
+          <div class="rc-btns">
+            <button class="btn-cmp" id="cmpBtn${i}" onclick="toggleCompare(${i},event)">Compare</button>
+            <button class="btn-bk" onclick="openModal(${i})">Details</button>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+  initReveal();
+}
+
+// ═══ ROOM MODAL ═══
+function openModal(i){
+  const r=allRooms[i];const d=loadSettings();
+  const rate=Number((d.rates||{}).standard||6000);
+  const fmt=n=>'LKR '+n.toLocaleString();
+  document.getElementById('mcNum').textContent='Room 0'+r.num;
+  document.getElementById('mcName').textContent=r.name;
+  document.getElementById('mcDesc').textContent=r.desc;
+  document.getElementById('mcAms').innerHTML=(r.amenities||[]).map(a=>`<span class="mc-am">${a}</span>`).join('');
+  document.getElementById('mcPrice').innerHTML=fmt(rate)+' <span>/ night</span>';
+  document.getElementById('modalImg').src=(r.images&&r.images[0])||'';
+  const nav=document.getElementById('modalNav');
+  nav.innerHTML=(r.images&&r.images.length>1)?r.images.map((_,j)=>`<button class="mn-btn ${j===0?'active':''}" onclick="switchImg(${i},${j},this)">${j+1}</button>`).join(''):'';
+  document.getElementById('roomModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function switchImg(ri,ii,btn){
+  document.getElementById('modalImg').src=allRooms[ri].images[ii];
+  document.querySelectorAll('.mn-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function closeRoomModal(){document.getElementById('roomModal').classList.remove('open');document.body.style.overflow='';}
+
+// ═══ COMPARE ═══
+let selectedRooms=[];
+function toggleCompare(i,e){
+  if(e)e.stopPropagation();
+  const idx=selectedRooms.indexOf(i);
+  if(idx>-1){
+    selectedRooms.splice(idx,1);
+  }else{
+    if(selectedRooms.length>=3){showToast('Max 3 rooms can be compared');return;}
+    selectedRooms.push(i);
+  }
+  updateCompareUI();
+}
+function updateCompareUI(){
+  allRooms.forEach((_,i)=>{
+    const rc=document.getElementById('rc'+i);const btn=document.getElementById('cmpBtn'+i);
+    if(!rc||!btn)return;
+    if(selectedRooms.includes(i)){rc.classList.add('comparing');btn.classList.add('active');btn.textContent='✓ Selected';}
+    else{rc.classList.remove('comparing');btn.classList.remove('active');btn.textContent='Compare';}
+  });
+  const bar=document.getElementById('compareBar');
+  if(selectedRooms.length>=2){
+    bar.classList.add('show');
+    document.getElementById('cbRooms').innerHTML=selectedRooms.map(i=>`<span class="cb-chip">${allRooms[i].name}</span>`).join('');
+  }else{bar.classList.remove('show');}
+}
+function clearCompare(){selectedRooms=[];updateCompareUI();}
+function openCompare(){
+  const rooms=selectedRooms.map(i=>allRooms[i]);
+  const d=loadSettings();const rate=Number((d.rates||{}).standard||6000);
+  const fmt=n=>'LKR '+n.toLocaleString();
+  const allAms=[...new Set(rooms.flatMap(r=>r.amenities||[]))];
+  const colW=Math.floor(100/(rooms.length+1));
+  const tbl=`
+    <thead>
+      <tr>
+        <th class="ct-label" style="width:${colW}%">Feature</th>
+        ${rooms.map(r=>`<th class="ct-room" style="width:${colW}%">
+          <div class="ct-room-img"><img src="${(r.images||[])[0]||''}" alt="${r.name}" onerror="this.style.background='var(--li)'"></div>
+          <div class="ct-room-info"><div class="ct-rname">${r.name}</div><div class="ct-rnum">Room 0${r.num}</div></div>
+        </th>`).join('')}
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="ct-label">Bed Type</td>${rooms.map(r=>`<td>${r.bedType||'—'}</td>`).join('')}</tr>
+      <tr class="ct-price-row"><td class="ct-label">Rate / Night</td>${rooms.map(()=>`<td>${fmt(rate)}</td>`).join('')}</tr>
+      ${allAms.map(am=>`<tr><td class="ct-label">${am}</td>${rooms.map(r=>`<td>${(r.amenities||[]).includes(am)?'<span class="ct-yes">✓</span>':'<span class="ct-no">—</span>'}</td>`).join('')}</tr>`).join('')}
+      <tr class="cmp-book-row"><td class="ct-label"></td>${rooms.map(()=>`<td><button class="btn-p" style="width:100%;font-size:.72rem;padding:.6rem;justify-content:center" onclick="showPage('contact');document.getElementById('cmpModal').classList.remove('open')">Book This Room</button></td>`).join('')}</tr>
+    </tbody>`;
+  document.getElementById('cmpTable').innerHTML=tbl;
+  document.getElementById('cmpModal').classList.add('open');
+}
+
+// ═══ PRICE CALCULATOR ═══
+function calcUpdate(){
+  const ci=document.getElementById('calc_ci').value;
+  const co=document.getElementById('calc_co').value;
+  const rooms=parseInt(document.getElementById('calc_rm').value)||1;
+  const res=document.getElementById('calcResult');
+  if(!ci||!co){res.style.display='none';return;}
+  const nights=Math.round((new Date(co)-new Date(ci))/(1000*60*60*24));
+  if(nights<=0){res.style.display='none';return;}
+  const d=loadSettings();const rate=Number((d.rates||{}).standard||6000);
+  const fmt=n=>'LKR '+n.toLocaleString();
+  document.getElementById('calcNights').textContent=nights+' night'+(nights>1?'s':'');
+  document.getElementById('calcRateShow').textContent=fmt(rate);
+  document.getElementById('calcRoomsShow').textContent=rooms+' room'+(rooms>1?'s':'');
+  document.getElementById('calcTotal').textContent=fmt(nights*rate*rooms);
+  res.style.display='block';
+}
+function bookFromCalc(){
+  showPage('contact');
+  setTimeout(()=>{
+    const ci=document.getElementById('calc_ci').value;
+    const co=document.getElementById('calc_co').value;
+    const rm=document.getElementById('calc_rm').value;
+    if(ci)document.getElementById('fci').value=ci;
+    if(co)document.getElementById('fco').value=co;
+    if(rm){const sel=document.getElementById('frm');for(let o of sel.options){if(o.value.startsWith(rm))sel.value=o.value;}}
+  },200);
+}
+function waFromCalc(){
+  const ci=document.getElementById('calc_ci').value;
+  const co=document.getElementById('calc_co').value;
+  const rooms=document.getElementById('calc_rm').value||'1';
+  if(!ci||!co){showToast('Please select check-in & check-out dates first');return;}
+  const nights=Math.round((new Date(co)-new Date(ci))/(1000*60*60*24));
+  const d=loadSettings();const rate=Number((d.rates||{}).standard||6000);
+  const fmt=n=>'LKR '+n.toLocaleString();
+  const fmtDate=dt=>new Date(dt).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+  const msg=`Hello Rangiri Heritage Inn! 🏛️\n\nI would like to enquire about a room booking:\n\n📅 Check-in: ${fmtDate(ci)}\n📅 Check-out: ${fmtDate(co)}\n🌙 Nights: ${nights}\n🛏️ Rooms: ${rooms}\n💰 Est. Total: ${fmt(nights*rate*parseInt(rooms))}\n\nPlease confirm availability. Thank you!`;
+  const wa=(d.general||{}).whatsapp||'94770000000';
+  window.open('https://wa.me/'+wa.replace(/[^0-9]/g,'')+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+// ═══ WHATSAPP FORM ═══
+function sendWhatsApp(){
+  const name=document.getElementById('fn').value.trim();
+  const phone=document.getElementById('fph').value.trim();
+  const ci=document.getElementById('fci').value;
+  const co=document.getElementById('fco').value;
+  const rooms=document.getElementById('frm').value||'1 Room';
+  const guests=document.getElementById('fg2').value||'1';
+  const sr=document.getElementById('fsr').value.trim()||'None';
+  if(!name||!ci||!co){showToast('Please fill in name and travel dates first');return;}
+  const nights=Math.round((new Date(co)-new Date(ci))/(1000*60*60*24));
+  const d=loadSettings();const rate=Number((d.rates||{}).standard||6000);
+  const fmt=n=>'LKR '+n.toLocaleString();
+  const fmtDate=dt=>new Date(dt).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+  const rmNum=parseInt(rooms)||1;
+  const msg=`Hello Rangiri Heritage Inn! 🏛️\n\nRoom Booking Enquiry:\n\n👤 Name: ${name}\n📱 Phone: ${phone||'—'}\n📅 Check-in: ${fmtDate(ci)}\n📅 Check-out: ${fmtDate(co)}\n🌙 Nights: ${nights}\n🛏️ Rooms: ${rooms}\n👥 Guests: ${guests}\n💰 Est. Total: ${fmt(nights*rate*rmNum)}\n📝 Special Requests: ${sr}\n\nPlease confirm availability and total price. Thank you!`;
+  const wa=(d.general||{}).whatsapp||'94770000000';
+  window.open('https://wa.me/'+wa.replace(/[^0-9]/g,'')+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+// ═══ FORM SUBMIT ═══
+function submitForm(){
+  const n=document.getElementById('fn').value.trim();
+  const p=document.getElementById('fph').value.trim();
+  const ci=document.getElementById('fci').value;
+  const co=document.getElementById('fco').value;
+  if(!n||!p||!ci||!co){showToast('Please fill in name, phone and travel dates');return;}
+  document.getElementById('bookForm').style.display='none';
+  document.getElementById('formOk').style.display='block';
+}
+
+// ═══ ATTRACTIONS ═══
+function buildAttr(attrs){
+  document.getElementById('attrGrid').innerHTML=attrs.map((a,i)=>`
+    <div class="ac" data-r style="transition-delay:${(i%3)*.08}s">
+      <div class="ac-ico ${a.cls||'m'}">${a.icon}</div>
+      <div class="ac-info"><h3>${a.name}</h3><p>${a.desc}</p>
+        <div class="ac-tags"><span class="atag ${a.cls||'m'}">📍 ${a.dist}</span><span class="atag t">🕐 ${a.time}</span></div>
+      </div>
+    </div>`).join('');
+  initReveal();
+}
+
+// ═══ GALLERY ═══
+const galCls=['s2','','r2','','',''];
+function buildGallery(imgs){
+  const g=document.getElementById('galGrid');if(!g)return;
+  g.innerHTML=imgs.slice(0,6).map((url,i)=>`<div class="gi ${galCls[i]||''}"><img src="${url}" alt="" loading="lazy"></div>`).join('');
+}
+
+// ═══ TESTIMONIALS ═══
+function buildTestimonials(ts){
+  const g=document.getElementById('testiGrid');if(!g)return;
+  g.innerHTML=ts.map((t,i)=>`
+    <div class="tc" data-r style="transition-delay:${i*.1}s">
+      <div class="tc-stars">${'★'.repeat(t.rating||5)}</div>
+      <div class="tc-text">${t.text}</div>
+      <div class="tc-author"><div class="tc-av">${t.name.charAt(0)}</div>
+        <div><div class="tc-name">${t.name}</div><div class="tc-loc">${t.country}</div></div>
+      </div>
+    </div>`).join('');
+  initReveal();
+}
+
+// ═══ NAVIGATION ═══
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nlinks button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  const nb=document.getElementById('nb-'+id);if(nb)nb.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  updateNav();initReveal();
+  if(id==='rooms')calcUpdate();
+}
+function toggleMob(){
+  document.getElementById('mobmenu').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open');
+}
+
+// ═══ NAV STYLE ═══
+function updateNav(){
+  const isHome=document.getElementById('page-home').classList.contains('active');
+  const atTop=window.scrollY<80;
+  document.getElementById('nav').className=isHome&&atTop?'transparent':'solid';
+}
+
+// ═══ COOKIE ═══
+function initCookies(){if(!localStorage.getItem('rangiri_cookies')){setTimeout(()=>document.getElementById('cookieBar').classList.add('show'),1500);}}
+function acceptCookies(){localStorage.setItem('rangiri_cookies','1');document.getElementById('cookieBar').classList.remove('show');}
+function declineCookies(){document.getElementById('cookieBar').classList.remove('show');}
+
+// ═══ TOAST ═══
+let tn;
+function showToast(msg){
+  const t=document.getElementById('toastNotif');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(tn);tn=setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// ═══ REVEAL ═══
+let obs;
+function initReveal(){
+  if(obs)obs.disconnect();
+  obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('[data-r]').forEach(el=>obs.observe(el));
+}
+
+// ═══ SCROLL EVENTS ═══
+window.addEventListener('scroll',()=>{
+  updateNav();
+  const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100;
+  document.getElementById('sp').style.width=pct+'%';
+  const btt=document.getElementById('bttBtn');
+  btt.classList.toggle('show',window.scrollY>400);
+  const bg=document.getElementById('heroBg');
+  if(bg)bg.style.transform=`scale(1) translateY(${window.scrollY*.22}px)`;
+});
+
+// ═══ CHECK AVAIL ═══
+function checkAvail(){
+  const ci=document.getElementById('hci').value;
+  const co=document.getElementById('hco').value;
+  if(!ci||!co){showToast('Please select check-in and check-out dates');return;}
+  showPage('contact');
+  setTimeout(()=>{if(ci)document.getElementById('fci').value=ci;if(co)document.getElementById('fco').value=co;},200);
+}
+
+// ═══ BOOT ═══
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('gone'),1800);});
+setTimeout(()=>document.getElementById('heroBg').classList.add('loaded'),100);
+const today=new Date().toISOString().split('T')[0];
+['hci','hco','fci','fco','calc_ci','calc_co'].forEach(id=>{const e=document.getElementById(id);if(e)e.min=today;});
+document.getElementById('nb-home').classList.add('active');
+applyData();
+updateNav();
+initReveal();
+initCookies();
+</script>
+</body>
+</html>
